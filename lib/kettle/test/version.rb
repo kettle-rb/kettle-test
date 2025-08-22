@@ -6,7 +6,7 @@ module Kettle
     module Version
       # The current version of kettle-test.
       # @return [String]
-      VERSION = "0.1.0"
+      VERSION = "1.0.0"
     end
   end
 end

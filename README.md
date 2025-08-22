@@ -247,14 +247,14 @@ Timecop.travel/freeze any RSpec (describe|context|example) with
 
 ```ruby
 # Timecop.travel
-it "some description", :travel => Time.new(2014, 11, 15) do
+it "some description", travel: Time.new(2014, 11, 15) do
   Time.now # 2014-11-15 00:00:00
   sleep 6
   Time.now # 2014-11-15 00:00:06 (6 seconds later)
 end
 
 # Timecop.freeze
-it "some description", :freeze => Time.new(2014, 11, 15) do
+it "some description", freeze: Time.new(2014, 11, 15) do
   Time.now # 2014-11-15 00:00:00
   sleep 6
   Time.now # 2014-11-15 00:00:00 (Ruby's time hasn't advanced)
@@ -265,7 +265,7 @@ Following spec's local travel will resume when specified time is the same as the
 previous examples specified time. If the time is different, it will
 start from the current examples specified time.
 ```ruby
-describe SomeUnit, :travel => Time.new(2014, 11, 15) do
+describe SomeUnit, travel: Time.new(2014, 11, 15) do
   it "example 1" do
     Time.now # => 2014-11-15 00:00:00
     sleep 6
@@ -275,7 +275,7 @@ describe SomeUnit, :travel => Time.new(2014, 11, 15) do
     Time.now # => 2014-11-15 00:00:06 (resumed from end of previous example)
   end
 
-  it "example 3", :travel => Time.new(1982, 6, 16) do
+  it "example 3", travel: Time.new(1982, 6, 16) do
     Time.now # => 1982-06-16 00:00:00
   end
 end

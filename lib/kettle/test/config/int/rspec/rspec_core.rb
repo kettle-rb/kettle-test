@@ -30,7 +30,7 @@ RSpec.configure do |config|
     # Exclude examples/groups tagged with :skip_ci when running on CI
     # Usage: add `:skip_ci` to any example or group you want to skip on CI
     if Kettle::Test::IS_CI
-      config.filter_run_excluding(:skip_ci => true)
+      config.filter_run_excluding(skip_ci: true)
     end
   end
   # :nocov:

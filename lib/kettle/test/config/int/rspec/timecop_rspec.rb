@@ -28,6 +28,6 @@ ENV["GLOBAL_TIME_TRAVEL_TIME"] ||= Kettle::Test::GLOBAL_DATE
 
 RSpec.configure do |config|
   config.around do |example|
-    Timecop::Rspec.time_machine(:sequential => Kettle::Test::TIME_MACHINE_SEQUENTIAL).run(example)
+    Timecop::Rspec.time_machine(sequential: Kettle::Test::TIME_MACHINE_SEQUENTIAL).run(example)
   end
 end
