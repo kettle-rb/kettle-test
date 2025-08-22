@@ -1,0 +1,27 @@
+module Kettle
+  module Test
+    class Error
+    end
+
+    # Environment-driven constants
+    DEBUG: bool
+    IS_CI: bool
+    FULL_BACKTRACE: bool
+    RSPEC_PROFILE_EXAMPLES_NUM: untyped
+    RSPEC_PROFILE_EXAMPLES: bool
+    RSPEC_VERSION: untyped
+    SILENT: bool
+    TRANSPEC: bool
+    TREAT_AS_PARALLEL: bool
+    VERBOSE: bool
+    GLOBAL_DATE: untyped
+    TIME_MACHINE_SEQUENTIAL: bool
+
+    # Class methods
+    def self.is_parallel_test?: () -> bool
+
+    module Version
+      VERSION: untyped
+    end
+  end
+end

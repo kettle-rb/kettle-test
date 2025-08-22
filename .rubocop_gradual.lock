@@ -1,0 +1,15 @@
+{
+  "Rakefile:2622381722": [
+    [346, 24, 2, "Lint/Syntax: unexpected token error\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5858765],
+    [426, 38, 2, "Lint/Syntax: unexpected token error\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5858765],
+    [452, 34, 2, "Lint/Syntax: unexpected token error\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5858765],
+    [545, 25, 2, "Lint/Syntax: unexpected token error\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5858765],
+    [556, 18, 2, "Lint/Syntax: unexpected token kDO_BLOCK\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5860750],
+    [556, 32, 1, "Lint/Syntax: unexpected token tPIPE\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 177625],
+    [557, 79, 2, "Lint/Syntax: unexpected token kDO_BLOCK\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5860750],
+    [557, 110, 1, "Lint/Syntax: unexpected token tPIPE\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 177625],
+    [630, 37, 2, "Lint/Syntax: unexpected token error\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5858765],
+    [635, 40, 2, "Lint/Syntax: unexpected token error\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5858765],
+    [673, 3, 3, "Lint/Syntax: unexpected token kEND\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 193405706]
+  ]
+}
