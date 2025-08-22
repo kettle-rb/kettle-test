@@ -471,7 +471,7 @@ namespace :ci do
       # If user passed a filename directly (with or without extension), resolve it
       file = if mapping.key?(choice)
                mapping.fetch(choice)
-             elsif /\.(yml|yaml)\z/.match?(choice)
+             elsif !!(/\.(yml|yaml)\z/ =~ choice)
                # Accept either full basename (without ext) or basename with .yml/.yaml
                choice
              else
@@ -642,7 +642,7 @@ namespace :ci do
 
     # Normalize selection
     chosen_file = nil
-    if input.match?(/^\d+$/)
+    if !!(/^\d+$/ =~ input)
       idx = input.to_i - 1
       if idx < 0 || idx >= options_with_quit.length
         abort("ci:act aborted: invalid selection #{input}")
