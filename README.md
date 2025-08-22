@@ -516,9 +516,9 @@ Thanks for RTFM. ☺️
 
 [✇bundle-group-pattern]: https://gist.github.com/pboling/4564780
 [⛳️gem-namespace]: https://github.com/kettle-rb/kettle-test
-[⛳️namespace-img]: https://img.shields.io/badge/namespace-Timecop%3A%3ARspec-3C2D2D.svg?style=square&logo=ruby&logoColor=white
+[⛳️namespace-img]: https://img.shields.io/badge/namespace-Kettle%3A%3ATest-3C2D2D.svg?style=square&logo=ruby&logoColor=white
 [⛳️gem-name]: https://rubygems.org/gems/kettle-test
-[⛳️name-img]: https://img.shields.io/badge/name-timecop--rspec-3C2D2D.svg?style=square&logo=rubygems&logoColor=red
+[⛳️name-img]: https://img.shields.io/badge/name-kettle--test-3C2D2D.svg?style=square&logo=rubygems&logoColor=red
 [🚂maint-blog]: http://www.railsbling.com/tags/kettle-test
 [🚂maint-blog-img]: https://img.shields.io/badge/blog-railsbling-0093D0.svg?style=for-the-badge&logo=rubyonrails&logoColor=orange
 [🚂maint-contact]: http://www.railsbling.com/contact
