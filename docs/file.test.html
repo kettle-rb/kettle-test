@@ -59,14 +59,34 @@
 
       <div id="content"><div id='filecontents'><p>module Kettle<br>
   module Test<br>
-    VERSION: String<br>
-    # See the writing guide of rbs: https://github.com/ruby/rbs#guides<br>
-  end<br>
-end</p>
+    class Error<br>
+    end</p>
+
+<pre class="code ruby"><code class="ruby"># Environment-driven constants
+DEBUG: bool
+IS_CI: bool
+FULL_BACKTRACE: bool
+RSPEC_PROFILE_EXAMPLES_NUM: untyped
+RSPEC_PROFILE_EXAMPLES: bool
+RSPEC_VERSION: untyped
+SILENT: bool
+TRANSPEC: bool
+TREAT_AS_PARALLEL: bool
+VERBOSE: bool
+GLOBAL_DATE: untyped
+TIME_MACHINE_SEQUENTIAL: bool
+
+# Class methods
+def self.is_parallel_test?: () -&gt; bool
+
+module Version
+  VERSION: untyped
+end   end end
+</code></pre>
 </div></div>
 
       <div id="footer">
-  Generated on Thu Aug 21 19:30:00 2025 by
+  Generated on Thu Aug 21 22:14:22 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
