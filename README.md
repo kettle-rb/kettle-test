@@ -568,10 +568,10 @@ Thanks for RTFM. ☺️
 [👽oss-helpi]: https://www.codetriage.com/kettle-rb/kettle-test/badges/users.svg
 [👽version]: https://rubygems.org/gems/kettle-test
 [👽versioni]: https://img.shields.io/gem/v/kettle-test.svg
-[🔑qlty-mnt]: https://qlty.sh/gh/galtzo-floss/projects/kettle-test
-[🔑qlty-mnti]: https://qlty.sh/gh/galtzo-floss/projects/kettle-test/maintainability.svg
-[🔑qlty-cov]: https://qlty.sh/gh/galtzo-floss/projects/kettle-test/metrics/code?sort=coverageRating
-[🔑qlty-covi]: https://qlty.sh/gh/galtzo-floss/projects/kettle-test/coverage.svg
+[🔑qlty-mnt]: https://qlty.sh/gh/kettle-rb/projects/kettle-test
+[🔑qlty-mnti]: https://qlty.sh/gh/kettle-rb/projects/kettle-test/maintainability.svg
+[🔑qlty-cov]: https://qlty.sh/gh/kettle-rb/projects/kettle-test/metrics/code?sort=coverageRating
+[🔑qlty-covi]: https://qlty.sh/gh/kettle-rb/projects/kettle-test/coverage.svg
 [🔑codecov]: https://codecov.io/gh/kettle-rb/kettle-test
 [🔑codecovi♻️]: https://codecov.io/gh/kettle-rb/kettle-test/graph/badge.svg?token=4YOMR0SJRI
 [🔑coveralls]: https://coveralls.io/github/kettle-rb/kettle-test?branch=main
