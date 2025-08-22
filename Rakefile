@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Galtzo FLOSS Rakefile v1.0.11 - 2025-08-19
+# Galtzo FLOSS Rakefile v1.0.12 - 2025-08-21
 # Ruby 2.3 (Safe Navigation) or higher required
 #
 # CHANGELOG
@@ -16,6 +16,7 @@
 # v1.0.9 - add appraisal:update task to update Appraisal gemfiles and autocorrect with RuboCop Gradual
 # v1.0.10 - add ci:act to run GHA workflows locally, and get status of remote workflows
 # v1.0.11 - ci:act workflows are populated entirely dynamically, based on existing files
+# v1.0.12 - restored compatibility with Ruby 2.3 (no String#match?)
 #
 # MIT License (see License.txt)
 #
