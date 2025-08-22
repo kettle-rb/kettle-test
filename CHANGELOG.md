@@ -16,9 +16,14 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 - TAG: [v1.0.0][1.0.0t]
 - COVERAGE: 100.00% -- 69/69 lines in 13 files
 - BRANCH COVERAGE: 100.00% -- 2/2 branches in 13 files
-- 23.53% documented
+- 94.44% documented
 ### Added
-- initial release
+- initial release, with auto-config support for:
+  - rspec
+  - rspec-block_is_expected
+  - rspec-stubbed_env
+  - silent_stream
+  - timecop-rspec
 
 [Unreleased]: https://gitlab.com/kettle-rb/kettle-test/-/compare/v1.0.0...HEAD
 [1.0.0]: https://gitlab.com/kettle-rb/kettle-test/-/compare/baed02cf1ca1e0e8c75c11fd188edaf1a4f5f08b...v1.0.0
