@@ -461,7 +461,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
 
 <ul>
     <li>
-        Copyright (c) 2025 Peter H. Boling, of
+        Copyright (c) 2023, 2025 Peter H. Boling, of
         <a href="https://discord.gg/3qme4XHNKN">
             Galtzo.com
             <picture>
@@ -469,7 +469,6 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
             </picture>
         </a>, and kettle-test contributors.
     </li>
-    <li>Copyright (c) 2014-2017 Zach Taylor & Avant</li>
 </ul>
 
 ## 🤑 A request for help
