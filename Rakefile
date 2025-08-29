@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# kettle-dev Rakefile v1.0.15 - 2025-08-29
+# kettle-dev Rakefile v1.0.16 - 2025-08-29
 # Ruby 2.3 (Safe Navigation) or higher required
 #
 # MIT License (see License.txt)
@@ -49,14 +49,14 @@
 
 require "bundler/gem_tasks" if !Dir[File.join(__dir__, "*.gemspec")].empty?
 
-# External gems - add here!
-require "kettle/dev"
-
 # Define a base default task early so other files can enhance it.
 desc "Default tasks aggregator"
 task :default do
   puts "Default task complete."
 end
+
+# External gems that define tasks - add here!
+require "kettle/dev"
 
 ### RELEASE TASKS
 # Setup stone_checksums
