@@ -21,8 +21,12 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Changed
 ### Deprecated
 ### Removed
+- checksums from packaged gem
 ### Fixed
+- gem packaged without checksums
+  - can't be in the packaged gem, since they would change the checksum of the gem itself
 ### Security
+- corrected checksums for the next release (not packaged, only tracked in VCS)
 
 ## [1.0.1] - 2025-08-29
 - TAG: [v1.0.1][1.0.1t]
