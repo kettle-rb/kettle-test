@@ -83,6 +83,52 @@ the <a href="https://gitlab.com/kettle-rb/kettle-test/-/blob/main/CODE_OF_CONDUC
   <li>Create new Pull Request.</li>
 </ol>
 
+<h2 id="environment-variables-for-local-development">Environment Variables for Local Development</h2>
+
+<p>Below are the primary environment variables recognized by stone_checksums (and its integrated tools). Unless otherwise noted, set boolean values to the string “true” to enable.</p>
+
+<p>General/runtime</p>
+<ul>
+  <li>DEBUG: Enable extra internal logging for this library (default: false)</li>
+  <li>REQUIRE_BENCH: Enable <code>require_bench</code> to profile requires (default: false)</li>
+  <li>CI: When set to true, adjusts default rake tasks toward CI behavior</li>
+</ul>
+
+<p>Coverage (kettle-soup-cover / SimpleCov)</p>
+<ul>
+  <li>K_SOUP_COV_DO: Enable coverage collection (default: true in .envrc)</li>
+  <li>K_SOUP_COV_FORMATTERS: Comma-separated list of formatters (html, xml, rcov, lcov, json, tty)</li>
+  <li>K_SOUP_COV_MIN_LINE: Minimum line coverage threshold (integer, e.g., 100)</li>
+  <li>K_SOUP_COV_MIN_BRANCH: Minimum branch coverage threshold (integer, e.g., 100)</li>
+  <li>K_SOUP_COV_MIN_HARD: Fail the run if thresholds are not met (true/false)</li>
+  <li>K_SOUP_COV_MULTI_FORMATTERS: Enable multiple formatters at once (true/false)</li>
+  <li>K_SOUP_COV_OPEN_BIN: Path to browser opener for HTML (empty disables auto-open)</li>
+  <li>MAX_ROWS: Limit console output rows for simplecov-console (e.g., 1)<br>
+Tip: When running a single spec file locally, you may want <code>K_SOUP_COV_MIN_HARD=false</code> to avoid failing thresholds for a partial run.</li>
+</ul>
+
+<p>GitHub API and CI helpers</p>
+<ul>
+  <li>GITHUB_TOKEN or GH_TOKEN: Token used by <code>ci:act</code> and release workflow checks to query GitHub Actions status at higher rate limits</li>
+</ul>
+
+<p>Releasing and signing</p>
+<ul>
+  <li>SKIP_GEM_SIGNING: If set, skip gem signing during build/release</li>
+  <li>GEM_CERT_USER: Username for selecting your public cert in <code>certs/&lt;USER&gt;.pem</code> (defaults to $USER)</li>
+  <li>SOURCE_DATE_EPOCH: Reproducible build timestamp. <code>kettle-release</code> will set this automatically for the session.</li>
+</ul>
+
+<p>Git hooks and commit message helpers (exe/kettle-commit-msg)</p>
+<ul>
+  <li>GIT_HOOK_BRANCH_VALIDATE: Branch name validation mode (e.g., <code>jira</code>) or <code>false</code> to disable</li>
+  <li>GIT_HOOK_FOOTER_APPEND: Append a footer to commit messages when goalie allows (true/false)</li>
+  <li>GIT_HOOK_FOOTER_SENTINEL: Required when footer append is enabled — a unique first-line sentinel to prevent duplicates</li>
+  <li>GIT_HOOK_FOOTER_APPEND_DEBUG: Extra debug output in the footer template (true/false)</li>
+</ul>
+
+<p>For a quick starting point, this repository’s <code>.envrc</code> shows sane defaults, and <code>.env.local</code> can override them locally.</p>
+
 <h2 id="appraisals">Appraisals</h2>
 
 <p>From time to time the Appraisal2 gemfiles in <code>gemfiles/</code> will need to be updated.<br>
@@ -108,6 +154,14 @@ They are created and updated with the commands:</p>
 
 <pre class="code language-console"><code class="language-console">bundle exec rake test
 </code></pre>
+
+<h3 id="spec-organization-required">Spec organization (required)</h3>
+
+<ul>
+  <li>For each class or module under <code>lib/</code>, keep all of its unit tests in a single spec file under <code>spec/</code> that mirrors the path and file name (e.g., specs for <code>lib/kettle/dev/release_cli.rb</code> live in <code>spec/kettle/dev/release_cli_spec.rb</code>).</li>
+  <li>Do not create ad-hoc “_more” or split spec files for the same class/module. Consolidate all unit tests into the main spec file for that class/module.</li>
+  <li>Only integration scenarios that intentionally span multiple classes belong in <code>spec/integration/</code>.</li>
+</ul>
 
 <h2 id="lint-it">Lint It</h2>
 
@@ -165,6 +219,12 @@ See: <a href="https://guides.rubygems.org/security/#building-gems">RubyGems Secu
 
 <h3 id="to-release-a-new-version">To release a new version:</h3>
 
+<h4 id="automated-process">Automated process</h4>
+
+<p>Run <code>bundle exec kettle-release</code>.</p>
+
+<h4 id="manual-process">Manual process</h4>
+
 <ol>
   <li>Run <code>bin/setup &amp;&amp; bin/rake</code> as a “test, coverage, &amp; linting” sanity check</li>
   <li>Update the version number in <code>version.rb</code>, and ensure <code>CHANGELOG.md</code> reflects changes</li>
@@ -181,8 +241,9 @@ See: <a href="https://guides.rubygems.org/security/#building-gems">RubyGems Secu
   <li>Run <code>git checkout $GIT_TRUNK_BRANCH_NAME</code>
 </li>
   <li>Run <code>git pull origin $GIT_TRUNK_BRANCH_NAME</code> to ensure latest trunk code</li>
-  <li>Set <code>SOURCE_DATE_EPOCH</code> so <code>rake build</code> and <code>rake release</code> use same timestamp, and generate same checksums
+  <li>Optional for older Bundler (&lt; 2.7.0): Set <code>SOURCE_DATE_EPOCH</code> so <code>rake build</code> and <code>rake release</code> use the same timestamp and generate the same checksums
     <ul>
+      <li>If your Bundler is &gt;= 2.7.0, you can skip this; builds are reproducible by default.</li>
       <li>Run <code>export SOURCE_DATE_EPOCH=$EPOCHSECONDS &amp;&amp; echo $SOURCE_DATE_EPOCH</code>
 </li>
       <li>If the echo above has no output, then it didn’t work.</li>
@@ -200,6 +261,11 @@ to create SHA-256 and SHA-512 checksums. This functionality is provided by the <
       <li>The script automatically commits but does not push the checksums</li>
     </ul>
   </li>
+  <li>Sanity check the SHA256, comparing with the output from the <code>bin/gem_checksums</code> command:
+    <ul>
+      <li><code>sha256sum pkg/&lt;gem name&gt;-&lt;version&gt;.gem</code></li>
+    </ul>
+  </li>
   <li>Run <code>bundle exec rake release</code> which will create a git tag for the version,<br>
 push git commits and tags, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>
 </li>
@@ -208,7 +274,7 @@ push git commits and tags, and push the <code>.gem</code> file to <a href="https
 </div></div>
 
       <div id="footer">
-  Generated on Sat Aug 23 04:48:09 2025 by
+  Generated on Fri Aug 29 14:20:11 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
