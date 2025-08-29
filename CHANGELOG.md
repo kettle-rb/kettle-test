@@ -21,6 +21,15 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Changed
 ### Deprecated
 ### Removed
+### Fixed
+### Security
+
+## [1.0.2] - 2025-08-29
+- TAG: [v1.0.2][1.0.2t]
+- COVERAGE: 100.00% -- 81/81 lines in 13 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 13 files
+- 94.44% documented
+### Removed
 - checksums from packaged gem
 ### Fixed
 - gem packaged without checksums
@@ -52,8 +61,10 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.2...HEAD
 [1.0.0]: https://github.com/kettle-rb/kettle-test/compare/baed02cf1ca1e0e8c75c11fd188edaf1a4f5f08b...v1.0.0
 [1.0.0t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.0
 [1.0.1]: https://github.com/kettle-rb/kettle-test/compare/v1.0.0...v1.0.1
 [1.0.1t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.1
+[1.0.2]: https://github.com/kettle-rb/kettle-test/compare/v1.0.1...v1.0.2
+[1.0.2t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.2
