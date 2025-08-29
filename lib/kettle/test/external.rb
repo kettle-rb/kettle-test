@@ -22,6 +22,7 @@ require "rspec/stubbed_env"
 require "rspec/block_is_expected" # Usage: see https://github.com/galtzo-floss/rspec-block_is_expected#example
 require "rspec_junit_formatter"
 require "silent_stream"
+require "timecop/rspec"
 
 # Configs of external libraries
 require_relative "config/version_gem"

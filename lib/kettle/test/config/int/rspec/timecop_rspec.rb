@@ -1,5 +1,3 @@
-require "timecop/rspec"
-
 # Ensure a consistent time for all tests
 #
 # Integrates timecop-rspec and provides metadata-based time travel/freeze.
