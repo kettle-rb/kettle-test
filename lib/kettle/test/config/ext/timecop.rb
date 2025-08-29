@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # already required in external.rb
 
 # NOTE: Instead of using Timecop directly, prefer to use the utilities provided by Timecop::Rspec.

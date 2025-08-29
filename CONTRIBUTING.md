@@ -22,6 +22,42 @@ Follow these instructions:
 6. Make sure to add tests for it. This is important, so it doesn't break in a future release.
 7. Create new Pull Request.
 
+## Environment Variables for Local Development
+
+Below are the primary environment variables recognized by stone_checksums (and its integrated tools). Unless otherwise noted, set boolean values to the string "true" to enable.
+
+General/runtime
+- DEBUG: Enable extra internal logging for this library (default: false)
+- REQUIRE_BENCH: Enable `require_bench` to profile requires (default: false)
+- CI: When set to true, adjusts default rake tasks toward CI behavior
+
+Coverage (kettle-soup-cover / SimpleCov)
+- K_SOUP_COV_DO: Enable coverage collection (default: true in .envrc)
+- K_SOUP_COV_FORMATTERS: Comma-separated list of formatters (html, xml, rcov, lcov, json, tty)
+- K_SOUP_COV_MIN_LINE: Minimum line coverage threshold (integer, e.g., 100)
+- K_SOUP_COV_MIN_BRANCH: Minimum branch coverage threshold (integer, e.g., 100)
+- K_SOUP_COV_MIN_HARD: Fail the run if thresholds are not met (true/false)
+- K_SOUP_COV_MULTI_FORMATTERS: Enable multiple formatters at once (true/false)
+- K_SOUP_COV_OPEN_BIN: Path to browser opener for HTML (empty disables auto-open)
+- MAX_ROWS: Limit console output rows for simplecov-console (e.g., 1)
+  Tip: When running a single spec file locally, you may want `K_SOUP_COV_MIN_HARD=false` to avoid failing thresholds for a partial run.
+
+GitHub API and CI helpers
+- GITHUB_TOKEN or GH_TOKEN: Token used by `ci:act` and release workflow checks to query GitHub Actions status at higher rate limits
+
+Releasing and signing
+- SKIP_GEM_SIGNING: If set, skip gem signing during build/release
+- GEM_CERT_USER: Username for selecting your public cert in `certs/<USER>.pem` (defaults to $USER)
+- SOURCE_DATE_EPOCH: Reproducible build timestamp. `kettle-release` will set this automatically for the session.
+
+Git hooks and commit message helpers (exe/kettle-commit-msg)
+- GIT_HOOK_BRANCH_VALIDATE: Branch name validation mode (e.g., `jira`) or `false` to disable
+- GIT_HOOK_FOOTER_APPEND: Append a footer to commit messages when goalie allows (true/false)
+- GIT_HOOK_FOOTER_SENTINEL: Required when footer append is enabled — a unique first-line sentinel to prevent duplicates
+- GIT_HOOK_FOOTER_APPEND_DEBUG: Extra debug output in the footer template (true/false)
+
+For a quick starting point, this repository’s `.envrc` shows sane defaults, and `.env.local` can override them locally.
+
 ## Appraisals
 
 From time to time the Appraisal2 gemfiles in `gemfiles/` will need to be updated.
@@ -50,6 +86,12 @@ To run all tests
 ```console
 bundle exec rake test
 ```
+
+### Spec organization (required)
+
+- For each class or module under `lib/`, keep all of its unit tests in a single spec file under `spec/` that mirrors the path and file name (e.g., specs for `lib/kettle/dev/release_cli.rb` live in `spec/kettle/dev/release_cli_spec.rb`).
+- Do not create ad-hoc "_more" or split spec files for the same class/module. Consolidate all unit tests into the main spec file for that class/module.
+- Only integration scenarios that intentionally span multiple classes belong in `spec/integration/`.
 
 ## Lint It
 
@@ -102,6 +144,12 @@ NOTE: To build without signing the gem you must set `SKIP_GEM_SIGNING` to some v
 
 ### To release a new version:
 
+#### Automated process
+
+Run `bundle exec kettle-release`.
+
+#### Manual process
+
 1. Run `bin/setup && bin/rake` as a "test, coverage, & linting" sanity check
 2. Update the version number in `version.rb`, and ensure `CHANGELOG.md` reflects changes
 3. Run `bin/setup && bin/rake` again as a secondary check, and to update `Gemfile.lock`
@@ -111,7 +159,8 @@ NOTE: To build without signing the gem you must set `SKIP_GEM_SIGNING` to some v
 6. Run `export GIT_TRUNK_BRANCH_NAME="$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)" && echo $GIT_TRUNK_BRANCH_NAME`
 7. Run `git checkout $GIT_TRUNK_BRANCH_NAME`
 8. Run `git pull origin $GIT_TRUNK_BRANCH_NAME` to ensure latest trunk code
-9. Set `SOURCE_DATE_EPOCH` so `rake build` and `rake release` use same timestamp, and generate same checksums
+9. Optional for older Bundler (< 2.7.0): Set `SOURCE_DATE_EPOCH` so `rake build` and `rake release` use the same timestamp and generate the same checksums
+    - If your Bundler is >= 2.7.0, you can skip this; builds are reproducible by default.
     - Run `export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH`
     - If the echo above has no output, then it didn't work.
     - Note: `zsh/datetime` module is needed, if running `zsh`.
@@ -121,7 +170,9 @@ NOTE: To build without signing the gem you must set `SKIP_GEM_SIGNING` to some v
     to create SHA-256 and SHA-512 checksums. This functionality is provided by the `stone_checksums`
     [gem][💎stone_checksums].
     - The script automatically commits but does not push the checksums
-12. Run `bundle exec rake release` which will create a git tag for the version,
+12. Sanity check the SHA256, comparing with the output from the `bin/gem_checksums` command:
+    - `sha256sum pkg/<gem name>-<version>.gem`
+13. Run `bundle exec rake release` which will create a git tag for the version,
     push git commits and tags, and push the `.gem` file to [rubygems.org][💎rubygems]
 
 [🚎src-main]: https://gitlab.com/kettle-rb/kettle-test

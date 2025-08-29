@@ -18,6 +18,7 @@ on:
   push:
     branches:
       - 'main'
+      - "*-stable"
     tags:
       - '!*' # Do not execute on tags
   pull_request:
@@ -34,8 +35,8 @@ concurrency:
 
 jobs:
   coverage:
-    name: Code Coverage on ${{ matrix.ruby }}@current
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    name: Code Coverage on ${{ matrix.ruby }}@current
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
@@ -97,7 +98,6 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           use_oidc: true
-          # CodeCov is broken: https://github.com/codecov/feedback/discussions/787
           fail_ci_if_error: false # optional (default = false)
           files: coverage/lcov.info,coverage/coverage.xml
           verbose: true # optional (default = false)

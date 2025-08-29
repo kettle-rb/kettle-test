@@ -33,6 +33,13 @@ This document captures project-specific knowledge to streamline setup, testing, 
 - Gem signing (for releases)
   - Signing is enabled unless SKIP_GEM_SIGNING is set. If enabled and certificates are present (certs/<USER>.pem), gem build will attempt to sign using ~/.ssh/gem-private_key.pem.
   - See CONTRIBUTING.md for releasing details; use SKIP_GEM_SIGNING when building in environments without the private key.
+  - Important for local testing (to avoid hanging prompts): ALWAYS skip signing when building locally to test the packaging or install process. Without the private key password, the build will wait indefinitely at a signing prompt.
+    - One-off commands (recommended):
+      - SKIP_GEM_SIGNING=true gem build kettle-test.gemspec
+      - SKIP_GEM_SIGNING=true bundle exec rake build
+      - SKIP_GEM_SIGNING=true bundle exec rake release  # only to test workflow; do not actually push
+    - direnv option (optional, not recommended globally): add `export SKIP_GEM_SIGNING=true` to your .env.local when you know you won’t be signing in this environment.
+    - Remove or unset SKIP_GEM_SIGNING when performing a real, signed release in the environment that has the private key.
 
 2. Testing
 - Framework and helpers
@@ -50,7 +57,8 @@ This document captures project-specific knowledge to streamline setup, testing, 
     - When adding new code or modifying existing code always add tests to cover the updated behavior, including branches, and different types of expected and unexpected inputs.
   - Additional test utilities:
     - rspec-stubbed_env: Use stub_env to control ENV safely within examples.
-    - timecop-rspec: Time manipulation available, see lib/kettle/test/config/int/rspec/timecop_rspec.
+    - timecop-rspec: Time manipulation is available, and is setup by kettle-test.
+      - To freeze time use `freeze: Time.new(*args)` tag on an example or group
 - Running tests (verified)
   - Full suite (recommended to satisfy coverage thresholds):
     - bin/rspec
@@ -74,8 +82,10 @@ This document captures project-specific knowledge to streamline setup, testing, 
   - During a spec run, the presence of output about missing activation keys is often expected, since it is literally what this library is for. It only indicates a failure if the spec expected all activation keys to be present, and not all specs do.
 - Adding new tests (guidelines)
   - Organize specs by class/module. Do not create per-task umbrella spec files; add examples to the existing spec for the class/module under test, or create a new spec file for that class/module if one does not exist. Only create a standalone scenario spec when it intentionally spans multiple classes for an integration/benchmark scenario (e.g., bench_integration_spec), and name it accordingly.
+  - Spec file names must map to a real class or module under lib/ (mirror the path). Do not introduce specs for non-existent classes or ad-hoc names (e.g., avoid template_helpers_replacements_spec.rb when testing Kettle::Test::TemplateHelpers; add those examples to template_helpers_spec.rb).
+  - REQUIRED: Provide unit tests for every class, module, constant, and public method. Place them in spec/ mirroring the path under lib/. When a file under lib/ is added or changed, ensure a corresponding spec file exists/updated for it.
   - Add tests for all public methods and add contexts for variations of their arguments, and arity.
-  - This repository targets near-100% coverage of Kettle::Test public API and RSpec-integrations (silent_stream, timecop, stubbed_env); when you add new public methods or config behavior, add or update specs accordingly.
+  - This repository targets near-100% coverage of its public API; when you add new public methods, rake tasks to a rakelib, or config behavior, add or update specs accordingly.
   - Place new specs under spec/ mirroring lib/ structure where possible. Do not require "spec_helper" at the top of spec files, as it is automatically loaded by .rspec.
   - If your code relies on environment variables that drive activation (see "Activation env vars" below), prefer using rspec-stubbed_env:
     - it does not support stubbing with blocks, but it does automatically clean up after itself.
@@ -86,27 +96,12 @@ This document captures project-specific knowledge to streamline setup, testing, 
       # example code continues
   - If your spec needs to assert on console output, tag it with :check_output. By default, STDOUT is silenced.
   - Use Timecop for deterministic time-sensitive behavior as needed (require config/timecop is already done by spec_helper).
-- Demonstrated example (executed and verified during this session)
-  - Example spec content used:
-    - File: spec/kettle-test/demo_spec.rb
-      RSpec.describe "Demo test for guidelines" do
-        it "has a non-empty version string" do
-          expect(FlossFunding::Version::VERSION).to be_a(String)
-          expect(FlossFunding::Version::VERSION).not_to be_empty
-        end
-      end
-  - Commands run:
-    - bundle exec rspec spec/kettle-test/demo_spec.rb — this ran but failed coverage thresholds (expected when running subsets with coverage on).
-    - bundle exec rspec — running the full suite including the demo spec passed; overall coverage: ~93.67% lines, ~74.07% branches.
-  - Cleanup: The demo spec file was removed after verification per instructions.
+
+- Types and documentation
+  - REQUIRED: All public APIs must have RBS type signatures checked into sig/ under the corresponding path. When you add a new public method or change a signature, update the matching .rbs file.
+  - REQUIRED: All public methods must include inline YARD docs with @param/@return (and @yield/@option where applicable). Generate docs with `bundle exec rake yard` to verify formatting.
 
 3. Additional development information
-- Activation env vars and namespacing (important for tests and local runs)
-  - The library behavior is driven by namespace-based activation keys: ENV["FLOSS_FUNDING_<NAMESPACE>"].
-  - The FlossFunding::Namespace class derives env var names via FlossFunding::UnderBar.env_variable_name(name). Recognized activation forms include:
-    - Free-as-in-beer, Business-is-not-good-yet, or NOT-FINANCIALLY-SUPPORTING-<namespace> — treated as unpaid/opted-out and considered "activated" for silent success (no console warnings).
-    - A paid activation key is a 64-char hex string; it is decrypted with AES-256-CBC using a key derived from Digest::MD5.hexdigest(namespace).
-  - In tests, avoid noisy output and unrelated failures by either using the provided default (ENV seeded for this gem) or stubbing the relevant ENV vars for the namespaces you trigger.
 - Code style and static analysis
   - RuboCop-LTS (Gradual) is integrated. Use:
     - bundle exec rake rubocop_gradual:autocorrect
@@ -126,14 +121,15 @@ This document captures project-specific knowledge to streamline setup, testing, 
 
 Quick start
 1) bundle install
-2) K_SOUP_COV_FORMATTERS="xml,rcov,lcov,json" bin/rspec (generates coverage reports in coverage/ in the specified formats, only choose the formats you need)
-3) Optional local HTML coverage report: K_SOUP_COV_FORMATTERS="html" bin/rspec (generates HTML coverage report in coverage/ - but this is too verbose for AI, so Junie should use one of the more terse formats, like rcov, lcov, or json)
-4) Static analysis: bundle exec rake rubocop_gradual:check && bundle exec rake reek
+2) K_SOUP_COV_FORMATTERS="json" bin/rspec (generates a JSON coverage report with both line and branch data in coverage/. Use this single format.)
+3) Static analysis: bundle exec rake rubocop_gradual:check && bundle exec rake reek
 
 Notes
 - ALWAYS Run bundle exec rake rubocop_gradual:autocorrect as the final step before completing a task, to lint and autocorrect any remaining issues. Then if there are new lint failures, attempt to correct them manually.
 - NEVER run vanilla rubocop, as it won't handle the linting config properly. Always run rubocop_gradual:autocorrect or rubocop_gradual.
-- NEVER consider backwards compatibility when adding new features or refactoring existing code, as this library is in the design phase, and is still an alpha release.
 - Running only a subset of specs is supported but in order to bypass the hard failure due to coverage thresholds, you need to run with K_SOUP_COV_MIN_HARD=false.
 - When adding code that writes to STDOUT, remember most specs silence output unless tagged with :check_output or DEBUG=true.
+- Completion criteria after changes: Only consider your change “done” when the relevant examples pass, as verified by .rspec_status. Do not rely on STDOUT impressions; consult .rspec_status (and example IDs) to confirm green results for the affected files/examples. If you ran a subset, re-run the full suite before finalizing to restore coverage thresholds.
+- Coverage reports: NEVER review the HTML report. Use JSON (preferred), XML, LCOV, or RCOV. For this project, always run tests with K_SOUP_COV_FORMATTERS set to "json".
+- Do NOT modify .envrc in tasks; when running tests locally or in scripts, manually prefix each run, e.g.: K_SOUP_COV_FORMATTERS="json" bin/rspec
 - For all the kettle-soup-cover options, see .envrc and find the K_SOUP_COV_* env vars.
