@@ -18,18 +18,19 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 ### Added
-- RSpec shared context: "with rake"
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
 
-## [1.0.1] - 2025-08-22
+## [1.0.1] - 2025-08-29
 - TAG: [v1.0.1][1.0.1t]
-- COVERAGE: 100.00% -- 69/69 lines in 13 files
+- COVERAGE: 100.00% -- 81/81 lines in 13 files
 - BRANCH COVERAGE: 100.00% -- 2/2 branches in 13 files
 - 94.44% documented
+### Added
+- RSpec shared context: "with rake"
 ### Fixed
 - Typos in README.md
 - Typos in CHANGELOG.md
@@ -47,8 +48,8 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://gitlab.com/kettle-rb/kettle-test/-/compare/v1.0.1...HEAD
-[1.0.0]: https://gitlab.com/kettle-rb/kettle-test/-/compare/baed02cf1ca1e0e8c75c11fd188edaf1a4f5f08b...v1.0.0
-[1.0.0t]: https://gitlab.com/kettle-rb/kettle-test/-/tags/v1.0.0
-[1.0.1]: https://gitlab.com/kettle-rb/kettle-test/-/compare/v1.0.0...v1.0.1
-[1.0.1t]: https://gitlab.com/kettle-rb/kettle-test/-/tags/v1.0.0
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.1...HEAD
+[1.0.0]: https://github.com/kettle-rb/kettle-test/compare/baed02cf1ca1e0e8c75c11fd188edaf1a4f5f08b...v1.0.0
+[1.0.0t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.0
+[1.0.1]: https://github.com/kettle-rb/kettle-test/compare/v1.0.0...v1.0.1
+[1.0.1t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.1

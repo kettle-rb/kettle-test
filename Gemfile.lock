@@ -13,7 +13,7 @@ GIT
 PATH
   remote: .
   specs:
-    kettle-test (1.0.0)
+    kettle-test (1.0.1)
       appraisal2 (~> 3.0)
       rspec (~> 3.0)
       rspec-block_is_expected (~> 1.0, >= 1.0.6)
