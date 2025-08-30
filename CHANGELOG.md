@@ -18,15 +18,24 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [1.0.3] - 2025-08-29
+- TAG: [v1.0.3][1.0.3t]
+- COVERAGE: 100.00% -- 81/81 lines in 13 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 13 files
+- 94.44% documented
+### Added
 - improved documentation in README.md
 - opencollective funding links to README.md
 ### Changed
 - kettle-dev 1.0.18 for development
-### Deprecated
 ### Removed
 - invalid checksums for old releases
-### Fixed
-### Security
 
 ## [1.0.2] - 2025-08-29
 - TAG: [v1.0.2][1.0.2t]
@@ -65,10 +74,12 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.3...HEAD
 [1.0.0]: https://github.com/kettle-rb/kettle-test/compare/baed02cf1ca1e0e8c75c11fd188edaf1a4f5f08b...v1.0.0
 [1.0.0t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.0
 [1.0.1]: https://github.com/kettle-rb/kettle-test/compare/v1.0.0...v1.0.1
 [1.0.1t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.1
 [1.0.2]: https://github.com/kettle-rb/kettle-test/compare/v1.0.1...v1.0.2
 [1.0.2t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.2
+[1.0.3]: https://github.com/kettle-rb/kettle-test/compare/v1.0.2...v1.0.3
+[1.0.3t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.3
