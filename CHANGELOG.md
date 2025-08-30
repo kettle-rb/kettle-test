@@ -18,9 +18,13 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 ### Added
+- improved documentation in README.md
+- opencollective funding links to README.md
 ### Changed
+- kettle-dev 1.0.18 for development
 ### Deprecated
 ### Removed
+- invalid checksums for old releases
 ### Fixed
 ### Security
 
