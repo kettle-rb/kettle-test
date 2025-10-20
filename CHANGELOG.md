@@ -20,7 +20,12 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- dependency on backports for Ruby 2.3 & 2.4 support
+- default config for rspec-pending_for
+
 ### Changed
+
+- upgraded kettle-dev to 1.1.34 for development
 
 ### Deprecated
 
