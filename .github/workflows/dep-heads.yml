@@ -1,4 +1,6 @@
-name: Heads
+# Targets the evergreen latest release of ruby, truffleruby, and jruby
+#   and tests against the HEAD of runtime dependencies
+name: Runtime Deps @ HEAD
 
 permissions:
   contents: read
@@ -37,26 +39,27 @@ jobs:
       fail-fast: true
       matrix:
         include:
-          # NOTE: Heads use default rubygems / bundler; their defaults are custom, unreleased, and from the future!
-          # ruby-head
-          - ruby: "ruby-head"
-            appraisal: "head"
+          # Ruby 3.4
+          - ruby: "ruby"
+            appraisal: "dep-heads"
+            exec_cmd: "rake test"
+            gemfile: "Appraisal.root"
+            rubygems: latest
+            bundler: latest
+
+          # truffleruby-24.1
+          #   (according to documentation: targets Ruby 3.3 compatibility)
+          #   (according to runtime: targets Ruby 3.2 compatibility)
+          - ruby: "truffleruby"
+            appraisal: "dep-heads"
             exec_cmd: "rake test"
             gemfile: "Appraisal.root"
             rubygems: default
             bundler: default
 
-          # truffleruby-head
-          - ruby: "truffleruby-head"
-            appraisal: "head"
-            exec_cmd: "rake test"
-            gemfile: "Appraisal.root"
-            rubygems: default
-            bundler: default
-
-          # jruby-head
-          - ruby: "jruby-head"
-            appraisal: "head"
+          # jruby-10.0 (targets Ruby 3.4 compatibility)
+          - ruby: "jruby"
+            appraisal: "dep-heads"
             exec_cmd: "rake test"
             gemfile: "Appraisal.root"
             rubygems: default

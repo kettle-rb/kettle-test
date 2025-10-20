@@ -17,56 +17,84 @@ Please file a bug if you notice a violation of semantic versioning.
 [📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat
 
 ## [Unreleased]
+
 ### Added
+
 ### Changed
+
 ### Deprecated
+
 ### Removed
+
 ### Fixed
+
 ### Security
 
 ## [1.0.3] - 2025-08-29
+
 - TAG: [v1.0.3][1.0.3t]
 - COVERAGE: 100.00% -- 81/81 lines in 13 files
 - BRANCH COVERAGE: 100.00% -- 2/2 branches in 13 files
 - 94.44% documented
+
 ### Added
+
 - improved documentation in README.md
 - opencollective funding links to README.md
+
 ### Changed
+
 - kettle-dev 1.0.18 for development
+
 ### Removed
+
 - invalid checksums for old releases
 
 ## [1.0.2] - 2025-08-29
+
 - TAG: [v1.0.2][1.0.2t]
 - COVERAGE: 100.00% -- 81/81 lines in 13 files
 - BRANCH COVERAGE: 100.00% -- 2/2 branches in 13 files
 - 94.44% documented
+
 ### Removed
+
 - checksums from packaged gem
+
 ### Fixed
+
 - gem packaged without checksums
   - can't be in the packaged gem, since they would change the checksum of the gem itself
+
 ### Security
+
 - corrected checksums for the next release (not packaged, only tracked in VCS)
 
 ## [1.0.1] - 2025-08-29
+
 - TAG: [v1.0.1][1.0.1t]
 - COVERAGE: 100.00% -- 81/81 lines in 13 files
 - BRANCH COVERAGE: 100.00% -- 2/2 branches in 13 files
 - 94.44% documented
+
 ### Added
+
 - RSpec shared context: "with rake"
+
 ### Fixed
+
 - Typos in README.md
 - Typos in CHANGELOG.md
 
 ## [1.0.0] - 2025-08-22
+
 - TAG: [v1.0.0][1.0.0t]
 - COVERAGE: 100.00% -- 69/69 lines in 13 files
 - BRANCH COVERAGE: 100.00% -- 2/2 branches in 13 files
 - 94.44% documented
+
 ### Added
+
 - initial release, with auto-config support for:
   - rspec
   - rspec-block_is_expected

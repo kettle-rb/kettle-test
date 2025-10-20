@@ -12,6 +12,9 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from <gem name>.gemspec
 gemspec
 
+# Debugging
+eval_gemfile "gemfiles/modular/debug.gemfile"
+
 # Code Coverage
 eval_gemfile "gemfiles/modular/coverage.gemfile"
 
@@ -24,6 +27,5 @@ eval_gemfile "gemfiles/modular/documentation.gemfile"
 # Optional
 eval_gemfile "gemfiles/modular/optional.gemfile"
 
-eval_gemfile "gemfiles/modular/debug.gemfile"
-
+### Std Lib Extracted Gems
 eval_gemfile "gemfiles/modular/x_std_libs.gemfile"

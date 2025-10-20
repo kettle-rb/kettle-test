@@ -12,9 +12,9 @@ authors:
     orcid: 'https://orcid.org/0009-0008-8519-441X'
 identifiers:
   - type: url
-    value: 'https://github.com/kettle-rb/kettle-test/'
+    value: 'https://github.com/kettle-rb/kettle-test'
     description: kettle-test
-repository-code: 'https://github.com/kettle-rb/kettle-test/'
+repository-code: 'https://github.com/kettle-rb/kettle-test'
 abstract: >-
   kettle-test
 license: See license file

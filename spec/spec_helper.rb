@@ -17,4 +17,5 @@ rescue LoadError => error
 end
 
 # RSpec config provided by this library
+# NOTE: Also loads *this* library
 require "kettle/test/rspec"
