@@ -20,12 +20,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- dependency on backports for Ruby 2.3 & 2.4 support
-- default config for rspec-pending_for
-
 ### Changed
-
-- upgraded kettle-dev to 1.1.34 for development
 
 ### Deprecated
 
@@ -34,6 +29,22 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+## [1.0.4] - 2025-10-20
+
+- TAG: [v1.0.4][1.0.4t]
+- COVERAGE: 100.00% -- 81/81 lines in 13 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 13 files
+- 94.44% documented
+
+### Added
+
+- dependency on backports for Ruby 2.3 & 2.4 support
+- default config for rspec-pending_for
+
+### Changed
+
+- upgraded kettle-dev to 1.1.34 for development
 
 ## [1.0.3] - 2025-08-29
 
@@ -107,12 +118,14 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.3...HEAD
-[1.0.0]: https://github.com/kettle-rb/kettle-test/compare/baed02cf1ca1e0e8c75c11fd188edaf1a4f5f08b...v1.0.0
-[1.0.0t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.0
-[1.0.1]: https://github.com/kettle-rb/kettle-test/compare/v1.0.0...v1.0.1
-[1.0.1t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.1
-[1.0.2]: https://github.com/kettle-rb/kettle-test/compare/v1.0.1...v1.0.2
-[1.0.2t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.2
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.4...HEAD
+[1.0.4]: https://github.com/kettle-rb/kettle-test/compare/v1.0.3...v1.0.4
+[1.0.4t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.4
 [1.0.3]: https://github.com/kettle-rb/kettle-test/compare/v1.0.2...v1.0.3
 [1.0.3t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.3
+[1.0.2]: https://github.com/kettle-rb/kettle-test/compare/v1.0.1...v1.0.2
+[1.0.2t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.2
+[1.0.1]: https://github.com/kettle-rb/kettle-test/compare/v1.0.0...v1.0.1
+[1.0.1t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.1
+[1.0.0]: https://github.com/kettle-rb/kettle-test/compare/baed02cf1ca1e0e8c75c11fd188edaf1a4f5f08b...v1.0.0
+[1.0.0t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.0
