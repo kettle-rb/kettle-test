@@ -40,6 +40,21 @@ Add to your `spec/spec_helper.rb`:
 
 ```ruby
 require "kettle/test/rspec"
+
+# ... any other config you need to do.
+
+# NOTE: Gemfiles for older rubies (< 2.7) won't have kettle-soup-cover.
+#       The rescue LoadError handles that scenario.
+begin
+  require "kettle-soup-cover"
+  require "simplecov" if Kettle::Soup::Cover::DO_COV # `.simplecov` is run here!
+rescue LoadError => error
+  # check the error message, and re-raise if not what is expected
+  raise error unless error.message.include?("kettle")
+end
+
+# This gem (or app)
+require "gem-under-test"
 ```
 
 Now you have many powerful testing tools at your disposal, all fully [documented](#-configuration) and tested.
@@ -169,6 +184,21 @@ Add to your `spec/spec_helper.rb`:
 
 ```ruby
 require "kettle/test/rspec"
+
+# ... any other config you need to do.
+
+# NOTE: Gemfiles for older rubies (< 2.7) won't have kettle-soup-cover.
+#       The rescue LoadError handles that scenario.
+begin
+  require "kettle-soup-cover"
+  require "simplecov" if Kettle::Soup::Cover::DO_COV # `.simplecov` is run here!
+rescue LoadError => error
+  # check the error message, and re-raise if not what is expected
+  raise error unless error.message.include?("kettle")
+end
+
+# This gem (or app)
+require "gem-under-test"
 ```
 
 That's it!  Additional customizations can be done by setting environment variables.
