@@ -20,8 +20,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- more complete usage documentation
-
 ### Changed
 
 ### Deprecated
@@ -30,9 +28,22 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- completed change of backports to runtime dependency
-
 ### Security
+
+## [1.0.6] - 2025-10-21
+
+- TAG: [v1.0.6][1.0.6t]
+- COVERAGE: 100.00% -- 83/83 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 15 files
+- 94.44% documented
+
+### Added
+
+- more complete usage documentation
+
+### Fixed
+
+- completed change of backports to runtime dependency
 
 ## [1.0.5] - 2025-10-20
 
@@ -133,7 +144,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.5...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.6...HEAD
+[1.0.6]: https://github.com/kettle-rb/kettle-test/compare/v1.0.5...v1.0.6
+[1.0.6t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.6
 [1.0.5]: https://github.com/kettle-rb/kettle-test/compare/v1.0.4...v1.0.5
 [1.0.5t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.5
 [1.0.4]: https://github.com/kettle-rb/kettle-test/compare/v1.0.3...v1.0.4
