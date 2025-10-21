@@ -30,6 +30,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- completed change of backports to runtime dependency
+
 ### Security
 
 ## [1.0.5] - 2025-10-20
