@@ -157,18 +157,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("gitmoji-regex", "~> 1.0", ">= 1.0.3")            # ruby >= 2.3.0
 
   # HTTP recording for deterministic specs
-  # Ruby 2.3 / 2.4 can fail with:
-  # | An error occurred while loading spec_helper.
-  # | Failure/Error: require "vcr"
-  # |
-  # | NoMethodError:
-  # |   undefined method `delete_prefix' for "CONTENT_LENGTH":String
-  # | # ./spec/config/vcr.rb:3:in `require'
-  # | # ./spec/config/vcr.rb:3:in `<top (required)>'
-  # | # ./spec/spec_helper.rb:8:in `require_relative'
-  # | # ./spec/spec_helper.rb:8:in `<top (required)>'
-  # So that's why we need backports.
-  spec.add_development_dependency("backports", "~> 3.25", ">= 3.25.2")  # ruby >= 0
   # In Ruby 3.5 (HEAD) the CGI library has been pared down, so we also need to depend on gem "cgi" for ruby@head
   # This is done in the "head" appraisal.
   # See: https://github.com/vcr/vcr/issues/1057
