@@ -381,14 +381,21 @@ Use rspec-stubbed_env to safely set and restore environment variables in specs.
 
 ```ruby
 RSpec.describe("stubbed env") do
-  include_context "with stubbed env"
+  # kettle-test includes these globally, so they are always available
+  # include_context "with stubbed env"
+  # include_context "with hidden env"
 
   before do
     stub_env("FOO" => "is bar")
+    hide_env("PATH")
   end
 
   it "uses the stubbed value" do
     expect(ENV["FOO"]).to(eq("is bar"))
+  end
+
+  it "has no path" do
+    expect(ENV["PATH"]).to(be_nil)
   end
 end
 ```

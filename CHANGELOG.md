@@ -20,6 +20,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- make `hide_env` (from rspec-stubbed_env) available by default
+
 ### Changed
 
 ### Deprecated
