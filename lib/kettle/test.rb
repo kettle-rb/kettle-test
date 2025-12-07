@@ -2,6 +2,7 @@
 
 require_relative "test/version"
 
+# Kettle namespace for the kettle-rb ecosystem of gems.
 module Kettle
   # Test support and RSpec integration for kettle-rb ecosystem.
   #
