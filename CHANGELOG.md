@@ -20,6 +20,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- traditional `Kettle::Test::VERSION` constant
 - make `hide_env` (from rspec-stubbed_env) available by default
 - increased documentation to 100%, and added many documentation improvements
 

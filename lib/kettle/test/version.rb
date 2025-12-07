@@ -8,5 +8,6 @@ module Kettle
       # @return [String]
       VERSION = "1.0.6"
     end
+    VERSION = Version::VERSION # Traditional constant at module level
   end
 end
