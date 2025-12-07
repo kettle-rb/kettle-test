@@ -20,10 +20,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- traditional `Kettle::Test::VERSION` constant
-- make `hide_env` (from rspec-stubbed_env) available by default
-- increased documentation to 100%, and added many documentation improvements
-
 ### Changed
 
 ### Deprecated
@@ -33,6 +29,19 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+## [1.0.7] - 2025-12-06
+
+- TAG: [v1.0.7][1.0.7t]
+- COVERAGE: 100.00% -- 84/84 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 15 files
+- 100.00% documented
+
+### Added
+
+- traditional `Kettle::Test::VERSION` constant
+- make `hide_env` (from rspec-stubbed_env) available by default
+- increased documentation to 100%, and added many documentation improvements
 
 ## [1.0.6] - 2025-10-21
 
@@ -148,7 +157,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.6...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.7...HEAD
+[1.0.7]: https://github.com/kettle-rb/kettle-test/compare/v1.0.6...v1.0.7
+[1.0.7t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.7
 [1.0.6]: https://github.com/kettle-rb/kettle-test/compare/v1.0.5...v1.0.6
 [1.0.6t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.6
 [1.0.5]: https://github.com/kettle-rb/kettle-test/compare/v1.0.4...v1.0.5
