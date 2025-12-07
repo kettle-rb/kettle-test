@@ -60,8 +60,7 @@ Gem::Specification.new do |spec|
 
   # Specify which files are part of the released package.
   spec.files = Dir[
-    # Executables and tasks
-    "exe/*",
+    # Code / tasks / data (NOTE: exe/ is specified via spec.bindir and spec.executables below)
     "lib/**/*.rb",
     "lib/**/*.rake",
     # Signatures
@@ -162,4 +161,5 @@ Gem::Specification.new do |spec|
   # See: https://github.com/vcr/vcr/issues/1057
   # spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
   # spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
+  spec.add_development_dependency("kettle-test", "~> 1.0", ">= 1.0.6")              # ruby >= 2.3
 end
