@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source "https://gem.coop"
 
 eval_gemfile "./contexts/core.gemfile"
 eval_gemfile "./contexts/testing.gemfile"
