@@ -101,7 +101,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")              # ruby >= 2.2.0
 
   ### Testing is runtime for this gem!
-  spec.add_dependency("appraisal2", "~> 3.0", ">= 3.0.1")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
+  spec.add_dependency("appraisal2", "~> 3.0", ">= 3.0.2")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
   spec.add_dependency("backports", "~> 3.0")
   spec.add_dependency("rspec", "~> 3.0")                                # ruby > 0
   spec.add_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")  # ruby >= 1.8.7, for block_is_expected.to syntax
