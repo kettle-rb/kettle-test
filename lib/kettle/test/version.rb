@@ -6,7 +6,7 @@ module Kettle
     module Version
       # The current version of kettle-test.
       # @return [String]
-      VERSION = "1.0.8"
+      VERSION = "1.0.9"
     end
     VERSION = Version::VERSION # Traditional constant at module level
   end
