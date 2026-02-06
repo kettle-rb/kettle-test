@@ -22,17 +22,28 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Upgraded to [appraisal2 v3.0.1](https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.1)
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- removed redundant development dependencies
-
 ### Security
+
+## [1.0.10] - 2026-02-06
+
+- TAG: [v1.0.10][1.0.10t]
+- COVERAGE: 100.00% -- 86/86 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 15 files
+- 100.00% documented
+
+### Changed
+
+- Upgraded to [appraisal2 v3.0.1](https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.1)
+
+### Fixed
+
+- removed redundant development dependencies
 
 ## [1.0.9] - 2026-02-06
 
@@ -189,7 +200,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.9...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.10...HEAD
+[1.0.10]: https://github.com/kettle-rb/kettle-test/compare/v1.0.9...v1.0.10
+[1.0.10t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.10
 [1.0.9]: https://github.com/kettle-rb/kettle-test/compare/v1.0.8...v1.0.9
 [1.0.9t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.9
 [1.0.8]: https://github.com/kettle-rb/kettle-test/compare/v1.0.7...v1.0.8
