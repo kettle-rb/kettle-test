@@ -101,7 +101,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")              # ruby >= 2.2.0
 
   ### Testing is runtime for this gem!
-  spec.add_dependency("appraisal2", "~> 3.0")                           # ruby >= 1.8.7, for testing against multiple versions of dependencies
+  spec.add_dependency("appraisal2", "~> 3.0", ">= 3.0.1")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
   spec.add_dependency("backports", "~> 3.0")
   spec.add_dependency("rspec", "~> 3.0")                                # ruby > 0
   spec.add_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")  # ruby >= 1.8.7, for block_is_expected.to syntax
@@ -136,9 +136,6 @@ Gem::Specification.new do |spec|
   # Debugging
   spec.add_development_dependency("require_bench", "~> 1.0", ">= 1.0.4")            # ruby >= 2.2.0
 
-  # Testing
-  spec.add_development_dependency("appraisal2", "~> 3.0")                           # ruby >= 1.8.7, for testing against multiple versions of dependencies
-
   # Releasing
   spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
   spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.2")          # ruby >= 2.2.0
@@ -161,5 +158,4 @@ Gem::Specification.new do |spec|
   # See: https://github.com/vcr/vcr/issues/1057
   # spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
   # spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
-  spec.add_development_dependency("kettle-test", "~> 1.0", ">= 1.0.6")              # ruby >= 2.3
 end

@@ -22,11 +22,15 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Upgraded to [appraisal2 v3.0.1](https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.1)
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- removed redundant development dependencies
 
 ### Security
 
