@@ -98,7 +98,7 @@ Compatible with MRI Ruby 2.3.0+, and concordant releases of JRuby, and TruffleRu
 
 [gh-discussions]: https://github.com/kettle-rb/kettle-test/discussions
 
-### Enterprise Support [![Tidelift](https://tidelift.com/badges/package/rubygems/kettle-test)](https://tidelift.com/subscription/pkg/rubygems-kettle-test?utm_source=rubygems-kettle-test&utm_medium=referral&utm_campaign=readme)
+### Enterprise Support [![Tidelift](https://tidelift.com/badges/package/rubygems/kettle-test)][🏙️entsup-tidelift]
 
 Available as part of the Tidelift Subscription.
 
@@ -200,8 +200,8 @@ That's it!  Additional customizations can be done by setting environment variabl
 Below are the environment variables recognized by kettle-test. Unless otherwise specified, set values to the string "true" to enable a boolean feature, or provide the noted type.
 
 - DEBUG (String: "true"/"false")
-  - Overrides default silencing for the entire run; when true, STDOUT/STDERR are not silenced by this library.
-  - Default: "false". If KETTLE_TEST_DEBUG is not set, DEBUG is used.
+    - Overrides default silencing for the entire run; when true, STDOUT/STDERR are not silenced by this library.
+    - Default: "false". If KETTLE_TEST_DEBUG is not set, DEBUG is used.
 - GLOBAL_TIME_TRAVEL_TIME (String: Date/Time)
     - Global start time for Timecop across examples when using time travel.
     - Example: "2014-11-15" or "2014-11-15 13:45:00".
@@ -210,30 +210,30 @@ Below are the environment variables recognized by kettle-test. Unless otherwise 
     - Alternate way to set a global date used when GLOBAL_TIME_TRAVEL_TIME is not provided.
     - Default: today (Date.today.to_s).
 - KETTLE_TEST_DEBUG (String: "true"/"false")
-  - Same as DEBUG but namespaced for this gem. Takes precedence over DEBUG.
-  - Default: "false".
+    - Same as DEBUG but namespaced for this gem. Takes precedence over DEBUG.
+    - Default: "false".
 - CI (String: "true"/"false")
-  - Signals a CI environment. When true, examples tagged :skip_ci are excluded.
-  - Also used as the default for KETTLE_TEST_SILENT when not set.
-  - Default: unset/empty → treated as false.
+    - Signals a CI environment. When true, examples tagged :skip_ci are excluded.
+    - Also used as the default for KETTLE_TEST_SILENT when not set.
+    - Default: unset/empty → treated as false.
 - KETTLE_TEST_SILENT (String: "true"/"false")
-  - Controls silencing of STDOUT/STDERR during specs (unless :check_output is used or DEBUG is true).
-  - Default: value of CI (true on CI, false locally unless CI=true).
+    - Controls silencing of STDOUT/STDERR during specs (unless :check_output is used or DEBUG is true).
+    - Default: value of CI (true on CI, false locally unless CI=true).
 - KETTLE_TEST_VERBOSE (String: "true"/"false")
-  - Reserved for future verbose logging toggles. Default: "false".
+    - Reserved for future verbose logging toggles. Default: "false".
 - KETTLE_TEST_FULL_BACKTRACE (String: "true"/"false")
-  - When true, enables RSpec full backtraces.
-  - Default: "false".
+    - When true, enables RSpec full backtraces.
+    - Default: "false".
 - KETTLE_TEST_RSPEC_PROFILE_EXAMPLES (Integer as String)
-  - When > 0, RSpec will profile the slowest N examples or example groups.
-  - Example: KETTLE_TEST_RSPEC_PROFILE_EXAMPLES=10
-  - Default: "0" (disabled).
+    - When > 0, RSpec will profile the slowest N examples or example groups.
+    - Example: KETTLE_TEST_RSPEC_PROFILE_EXAMPLES=10
+    - Default: "0" (disabled).
 - KETTLE_TEST_TM_SEQUENTIAL (String: "true"/"false")
     - Controls Timecop sequential time machine mode for RSpec examples (see below).
     - Default: "true".
 - PARALLEL_TEST_FIRST_IS_1 (String: "true"/"false") and TEST_ENV_NUMBER (String)
-  - Used to detect parallel test runs via Kettle::Test.is_parallel_test?. Not generally required to set manually.
-  - Default: unset (treated as non-parallel unless provided by your parallel test runner).
+    - Used to detect parallel test runs via Kettle::Test.is_parallel_test?. Not generally required to set manually.
+    - Default: unset (treated as non-parallel unless provided by your parallel test runner).
 
 ### TimeCop-RSpec
 
@@ -277,6 +277,7 @@ except that it will sometimes resume time travel.
 
 Global travel will always resume from when the previous global traveled
 example ended. E.g.
+
 ```ruby
 # GLOBAL_TIME_TRAVEL_TIME=2014-11-15 bundle exec rspec some_spec.rb
 
@@ -336,6 +337,7 @@ end
 Following spec's local travel will resume when specified time is the same as the
 previous examples specified time. If the time is different, it will
 start from the current examples specified time.
+
 ```ruby
 describe SomeUnit, travel: Time.new(2014, 11, 15) do
   it "example 1" do
@@ -450,7 +452,7 @@ and [Tidelift][🏙️entsup-tidelift].
 
 ### Open Collective for Individuals
 
-Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/kettle-rb#backer)]
+Support us with a monthly donation and help us continue our activities. [[Become a backer][🖇osc-backers]]
 
 NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day, automatically.
 
@@ -460,7 +462,7 @@ No backers yet. Be the first!
 
 ### Open Collective for Organizations
 
-Become a sponsor and get your logo on our README on GitHub with a link to your site. [[Become a sponsor](https://opencollective.com/kettle-rb#sponsor)]
+Become a sponsor and get your logo on our README on GitHub with a link to your site. [[Become a sponsor][🖇osc-sponsors]]
 
 NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day, automatically.
 
@@ -647,7 +649,6 @@ Thanks for RTFM. ☺️
 [✉️discord-invite-img-ftb]: https://img.shields.io/discord/1373797679469170758?style=for-the-badge&logo=discord
 [✉️ruby-friends-img]: https://img.shields.io/badge/daily.dev-%F0%9F%92%8E_Ruby_Friends-0A0A0A?style=for-the-badge&logo=dailydotdev&logoColor=white
 [✉️ruby-friends]: https://app.daily.dev/squads/rubyfriends
-
 [✇bundle-group-pattern]: https://gist.github.com/pboling/4564780
 [⛳️gem-namespace]: https://github.com/kettle-rb/kettle-test
 [⛳️namespace-img]: https://img.shields.io/badge/namespace-Kettle::Test-3C2D2D.svg?style=square&logo=ruby&logoColor=white
