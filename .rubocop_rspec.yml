@@ -53,3 +53,4 @@ RSpec/Output:
     - 'spec/support/**/*'
     - 'spec/config/**/*'
     - 'spec/fixtures/**/*'
+    - 'spec/kettle/test/silent_stream_spec.rb'
