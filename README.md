@@ -399,6 +399,94 @@ Or run:
 DEBUG=true bundle exec rspec
 ```
 
+### Version-based pending and skipping
+
+Use rspec-pending_for to conditionally pending or skip examples based on Ruby version and engine.
+
+The `pending_for` and `skip_for` macros support flexible version specifications:
+
+**Supported version forms:**
+- String: exact or partial match to RUBY_VERSION (e.g., "3.2.4", "3.2", or "3")
+- Array of strings: any matching entry triggers pending/skip
+- Range of Gem::Version: inclusive/exclusive endpoints respected
+- Range of Integer: compares major version only (e.g., 2..3 for Ruby 2.x and 3.x)
+
+**Supported engines:** :ruby (MRI), :jruby, :truffleruby
+
+**Specifying versions:**
+
+```ruby
+RSpec.describe("version-specific behavior") do
+  # Exact version string
+  it "pends only on Ruby 3.2.4" do
+    pending_for(engine: :ruby, versions: "3.2.4")
+    # ...
+  end
+
+  # Multiple exact versions
+  it "pends on a set of MRI versions" do
+    pending_for(engine: :ruby, versions: %w[2.7.10 3.0.7 3.1.6])
+  end
+
+  # Match any engine by version (no :engine)
+  it "skips on any engine if version equals 2.7.8" do
+    skip_for(versions: "2.7.8", reason: "Known upstream incompatibility")
+  end
+
+  # Range of Gem::Version (inclusive)
+  it "pends for MRI >= 2.6.0 and <= 3.0.0" do
+    pending_for(
+      engine: :ruby,
+      versions: (Gem::Version.new("2.6.0")..Gem::Version.new("3.0.0")),
+    )
+  end
+
+  # Range of Gem::Version (exclusive end)
+  it "skips for MRI >= 3.1.0 and < 3.3.0" do
+    skip_for(
+      engine: :ruby,
+      versions: (Gem::Version.new("3.1.0")...Gem::Version.new("3.3.0")),
+    )
+  end
+
+  # Range of Integer (major versions)
+  it "pends on all Ruby 2.x and 3.x" do
+    pending_for(versions: (2..3), reason: "Major series currently affected")
+  end
+
+  it "skips on Ruby 2.x but not 3.x" do
+    skip_for(versions: (2...3)) # 2 <= version < 3
+  end
+end
+```
+
+**Using with RSpec tags:**
+
+```ruby
+RSpec.configure do |config|
+  # Auto-skip examples requiring specific Ruby versions via tags
+  config.before(:each, :requires_ruby_32) do
+    skip_for(
+      reason: "Requires Ruby >= 3.2",
+      versions: %w[2.7 3.0 3.1],
+    )
+  end
+end
+
+RSpec.describe("something") do
+  it "runs only on Ruby 3.2+", :requires_ruby_32 do
+    # ... your example code ...
+  end
+end
+```
+
+**Notes:**
+- Omit :engine to match any Ruby engine (MRI, JRuby, TruffleRuby)
+- Omit :versions with :engine to match all versions of that engine
+- JRuby and TruffleRuby are matched using their RUBY_VERSION compatibility
+- String matching supports partial versions ("3.1" matches "3.1.x" but not "3.0.x")
+- Provide :reason to override the default message in reports
+
 ### CI-only filtering
 
 Examples or groups tagged with :skip_ci are excluded on CI (CI=true).

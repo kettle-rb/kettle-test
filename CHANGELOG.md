@@ -20,6 +20,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Document usage of rspec-pending_for
+
 ### Changed
 
 ### Deprecated
