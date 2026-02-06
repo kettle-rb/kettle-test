@@ -20,13 +20,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- rspec/pending_for made available by default
-  - `skip_for` and `pending_for` are now available by default, without needing to explicitly require 'rspec/pending_for'
-
 ### Changed
-
-- Updated documentation on hostile takeover of RubyGems
-  - https://dev.to/galtzo/hostile-takeover-of-rubygems-my-thoughts-5hlo
 
 ### Deprecated
 
@@ -35,6 +29,23 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+## [1.0.8] - 2026-02-06
+
+- TAG: [v1.0.8][1.0.8t]
+- COVERAGE: 100.00% -- 86/86 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 15 files
+- 100.00% documented
+
+### Added
+
+- rspec/pending_for made available by default
+  - `skip_for` and `pending_for` are now available by default, without needing to explicitly require 'rspec/pending_for'
+
+### Changed
+
+- Updated documentation on hostile takeover of RubyGems
+  - https://dev.to/galtzo/hostile-takeover-of-rubygems-my-thoughts-5hlo
 
 ## [1.0.7] - 2025-12-06
 
@@ -163,7 +174,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.7...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.8...HEAD
+[1.0.8]: https://github.com/kettle-rb/kettle-test/compare/v1.0.7...v1.0.8
+[1.0.8t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.8
 [1.0.7]: https://github.com/kettle-rb/kettle-test/compare/v1.0.6...v1.0.7
 [1.0.7t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.7
 [1.0.6]: https://github.com/kettle-rb/kettle-test/compare/v1.0.5...v1.0.6
