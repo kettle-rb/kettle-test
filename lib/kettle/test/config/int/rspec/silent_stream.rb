@@ -7,6 +7,10 @@ RSpec.configure do |config|
       example.run
     # Make tests run silently, with shunted STDOUT & STDERR, if ENV var KETTLE_TEST_SILENT == "true"
     else
+      # silence_all only silences STDOUT
+      # Alternatives:
+      #   quietly also silences STDERR
+      #   silence_stderr only silences STDERR
       silence_all(Kettle::Test::SILENT) do
         example.run
       end
