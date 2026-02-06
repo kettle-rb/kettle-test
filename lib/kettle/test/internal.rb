@@ -4,6 +4,7 @@
 # config/int and its subfolders.
 # Files in config/ext may depend on this library's internals.
 require_relative "config/int/rspec_block_is_expected"
+require_relative "config/int/rspec_pending_for"
 require_relative "config/int/rspec/rspec_core"
 require_relative "config/int/rspec/silent_stream"
 

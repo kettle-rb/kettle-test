@@ -20,6 +20,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- rspec/pending_for made available by default
+  - `skip_for` and `pending_for` are now available by default, without needing to explicitly require 'rspec/pending_for'
+
 ### Changed
 
 - Updated documentation on hostile takeover of RubyGems
