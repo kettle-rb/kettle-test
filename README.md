@@ -406,6 +406,7 @@ Use rspec-pending_for to conditionally pending or skip examples based on Ruby ve
 The `pending_for` and `skip_for` macros support flexible version specifications:
 
 **Supported version forms:**
+
 - String: exact or partial match to RUBY_VERSION (e.g., "3.2.4", "3.2", or "3")
 - Array of strings: any matching entry triggers pending/skip
 - Range of Gem::Version: inclusive/exclusive endpoints respected
@@ -481,6 +482,7 @@ end
 ```
 
 **Notes:**
+
 - Omit :engine to match any Ruby engine (MRI, JRuby, TruffleRuby)
 - Omit :versions with :engine to match all versions of that engine
 - JRuby and TruffleRuby are matched using their RUBY_VERSION compatibility
