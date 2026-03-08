@@ -12,32 +12,31 @@
 
 ## ⚠️ AI Agent Terminal Limitations
 
-### Terminal Output Is Not Visible
+### Terminal Output Is Available, but Each Command Is Isolated
 
-**CRITICAL**: AI agents using `run_in_terminal` almost never see the command output. The terminal tool sends commands to a persistent Copilot terminal, but output is frequently lost or invisible to the agent.
+**CRITICAL**: AI agents can reliably read terminal output when commands run in the background and the output is polled afterward. However, each terminal command should be treated as a fresh shell with no shared state.
 
-**Workaround**: Always redirect output to a file in the project's local `tmp/` directory, then read it back:
+### Use `mise` for Project Environment
 
+**CRITICAL**: The canonical project environment now lives in `mise.toml`, with local overrides in `.env.local` loaded via `dotenvy`.
+
+✅ **CORRECT**:
 ```bash
-bundle exec rspec spec/some_spec.rb > tmp/test_output.txt 2>&1
+mise exec -C /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test -- bundle exec rspec
 ```
-Then use `read_file` to see `tmp/test_output.txt`.
 
-**NEVER** use `/tmp` or other system directories — always use the project's own `tmp/` directory.
+✅ **CORRECT**:
+```bash
+eval "$(mise env -C /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test -s bash)" && bundle exec rspec
+```
 
-### direnv Requires Separate `cd` Command
-
-**CRITICAL**: The project uses `direnv` to load environment variables from `.envrc`. When you `cd` into the project directory, `direnv` initializes **after** the shell prompt returns. If you chain `cd` with other commands via `&&`, the subsequent commands run **before** `direnv` has loaded the environment.
-
-✅ **CORRECT** — Run `cd` alone, then run commands separately:
+❌ **WRONG**:
 ```bash
 cd /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test
-```
-```bash
 bundle exec rspec
 ```
 
-❌ **WRONG** — Never chain `cd` with `&&`:
+❌ **WRONG**:
 ```bash
 cd /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test && bundle exec rspec
 ```
@@ -67,9 +66,9 @@ Only use terminal for:
 bundle exec rspec 2>&1 | tail -50
 ```
 
-✅ **CORRECT** — Redirect to file:
+✅ **CORRECT** — Run the plain command and read the full output afterward:
 ```bash
-bundle exec rspec > tmp/test_output.txt 2>&1
+mise exec -C /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test -- bundle exec rspec
 ```
 
 ## 🏗️ Architecture
@@ -84,7 +83,7 @@ All of these are **runtime dependencies** (not dev dependencies), because this g
 - **Block Expectations** — `block_is_expected` (from `rspec-block_is_expected`)
 - **Output Capture** — `capture` helper (from `silent_stream`)
 - **Time Manipulation** — Timecop integration with sequential time machine mode (from `timecop-rspec`)
-- **Pending Specs** — Ruby-version-aware spec skipping (from `rspec-pending_for`)
+- **Pending Specs** — Ruby-version-aware spec skipping (from `rspec-pending-for`)
 
 ### Key Constants
 
@@ -105,7 +104,7 @@ All of these are **runtime dependencies** (not dev dependencies), because this g
 | `rspec` (~> 3.0) | Test framework |
 | `rspec-block_is_expected` (~> 1.0) | Block expectation syntax |
 | `rspec_junit_formatter` (~> 0.6) | JUnit XML output for CI |
-| `rspec-pending_for` (~> 0.1) | Ruby-version-aware pending |
+| `rspec-pending-for` (~> 0.1) | Ruby-version-aware pending |
 | `rspec-stubbed_env` (~> 1.0) | ENV stubbing helpers |
 | `silent_stream` (~> 1.0) | Output capture/silencing |
 | `timecop-rspec` (~> 1.0) | Time manipulation |
@@ -151,22 +150,16 @@ lib/kettle/
 ### Running Tests
 
 ```bash
-cd /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test
-```
-```bash
-bundle exec rspec > tmp/test_output.txt 2>&1
+mise exec -C /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test -- bundle exec rspec
 ```
 
 ### Coverage Reports
 
 ```bash
-cd /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test
-```
-```bash
-bin/rake coverage > tmp/coverage_output.txt 2>&1
+mise exec -C /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test -- bin/rake coverage
 ```
 
-**Key ENV variables** (set in `.envrc`):
+**Key ENV variables** (set in `mise.toml`, with local overrides in `.env.local`):
 - `K_SOUP_COV_DO=true` – Enable coverage
 - `K_SOUP_COV_MIN_LINE=100` – Line coverage threshold (100%!)
 - `K_SOUP_COV_MIN_BRANCH=100` – Branch coverage threshold (100%!)
@@ -235,9 +228,9 @@ Tests automatically have time frozen to `GLOBAL_DATE` (defaults to today). Seque
 ## 🚫 Common Pitfalls
 
 1. **NEVER add backward compatibility** — No shims, aliases, or deprecation layers.
-2. **NEVER chain `cd` with `&&`** — `direnv` won't initialize until after all chained commands finish.
-3. **NEVER pipe test output through `head`/`tail`** — Redirect to `tmp/` files instead.
-4. **Terminal output is invisible** — Always redirect to `tmp/` and read back with `read_file`.
+2. **NEVER expect `cd` to persist** — Every terminal command is isolated; use a self-contained `mise exec -C ... -- ...` invocation.
+3. **NEVER pipe test output through `head`/`tail`** — Run tests without truncation so you can inspect the full output.
+4. **Terminal commands do not share shell state** — Previous `cd`, `export`, aliases, and functions are not available to the next command.
 5. **`grep_search` cannot search nested git projects** — Use `read_file` and `list_dir` to explore this codebase.
 6. **Use `tmp/` for temporary files** — Never use `/tmp` or other system directories.
 7. **Testing dependencies are RUNTIME** — Unlike most gems, `rspec`, `timecop-rspec`, etc. are runtime deps because this gem's purpose is to provide test infrastructure.
