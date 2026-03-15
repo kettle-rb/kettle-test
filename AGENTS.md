@@ -20,25 +20,40 @@
 
 **CRITICAL**: The canonical project environment now lives in `mise.toml`, with local overrides in `.env.local` loaded via `dotenvy`.
 
-✅ **CORRECT**:
+⚠️ **Watch for trust prompts**: After editing `mise.toml` or `.env.local`, `mise` may require trust to be refreshed before commands can load the project environment. That interactive trust screen can masquerade as missing terminal output, so commands may appear hung or silent until you handle it.
+
+**Recovery rule**: If a `mise exec` command in this repo goes silent, appears hung, or terminal polling stops returning useful output, assume `mise trust` is needed first and recover with:
+
 ```bash
-mise exec -C /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test -- bundle exec rspec
+mise trust -C /home/pboling/src/kettle-rb/kettle-test
+mise exec -C /home/pboling/src/kettle-rb/kettle-test -- bundle exec rspec
+```
+
+Do this before spending time on unrelated debugging; in this workspace, silent `mise` commands are usually a trust problem.
+
+```bash
+mise trust -C /home/pboling/src/kettle-rb/kettle-test
 ```
 
 ✅ **CORRECT**:
 ```bash
-eval "$(mise env -C /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test -s bash)" && bundle exec rspec
+mise exec -C /home/pboling/src/kettle-rb/kettle-test -- bundle exec rspec
+```
+
+✅ **CORRECT**:
+```bash
+eval "$(mise env -C /home/pboling/src/kettle-rb/kettle-test -s bash)" && bundle exec rspec
 ```
 
 ❌ **WRONG**:
 ```bash
-cd /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test
+cd /home/pboling/src/kettle-rb/kettle-test
 bundle exec rspec
 ```
 
 ❌ **WRONG**:
 ```bash
-cd /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test && bundle exec rspec
+cd /home/pboling/src/kettle-rb/kettle-test && bundle exec rspec
 ```
 
 ### Prefer Internal Tools Over Terminal
@@ -68,7 +83,7 @@ bundle exec rspec 2>&1 | tail -50
 
 ✅ **CORRECT** — Run the plain command and read the full output afterward:
 ```bash
-mise exec -C /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test -- bundle exec rspec
+mise exec -C /home/pboling/src/kettle-rb/kettle-test -- bundle exec rspec
 ```
 
 ## 🏗️ Architecture
@@ -112,9 +127,9 @@ All of these are **runtime dependencies** (not dev dependencies), because this g
 | `backports` (~> 3.0) | Ruby backports |
 | `version_gem` (~> 1.1) | Version management |
 
-### Vendor Directory
+### Workspace layout
 
-**IMPORTANT**: This project lives in `vendor/kettle-test/` within the `ast-merge` workspace. It is a **nested git project** with its own `.git/` directory. The `grep_search` tool **CANNOT search inside nested git projects** — use `read_file` and `list_dir` instead.
+This repo is a sibling project inside the `/home/pboling/src/kettle-rb` workspace, not a vendored dependency under another repo.
 
 ## 📁 Project Structure
 
@@ -150,13 +165,13 @@ lib/kettle/
 ### Running Tests
 
 ```bash
-mise exec -C /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test -- bundle exec rspec
+mise exec -C /home/pboling/src/kettle-rb/kettle-test -- bundle exec rspec
 ```
 
 ### Coverage Reports
 
 ```bash
-mise exec -C /home/pboling/src/kettle-rb/ast-merge/vendor/kettle-test -- bin/rake coverage
+mise exec -C /home/pboling/src/kettle-rb/kettle-test -- bin/rake coverage
 ```
 
 **Key ENV variables** (set in `mise.toml`, with local overrides in `.env.local`):
@@ -231,7 +246,6 @@ Tests automatically have time frozen to `GLOBAL_DATE` (defaults to today). Seque
 2. **NEVER expect `cd` to persist** — Every terminal command is isolated; use a self-contained `mise exec -C ... -- ...` invocation.
 3. **NEVER pipe test output through `head`/`tail`** — Run tests without truncation so you can inspect the full output.
 4. **Terminal commands do not share shell state** — Previous `cd`, `export`, aliases, and functions are not available to the next command.
-5. **`grep_search` cannot search nested git projects** — Use `read_file` and `list_dir` to explore this codebase.
-6. **Use `tmp/` for temporary files** — Never use `/tmp` or other system directories.
-7. **Testing dependencies are RUNTIME** — Unlike most gems, `rspec`, `timecop-rspec`, etc. are runtime deps because this gem's purpose is to provide test infrastructure.
-8. **100% coverage required** — Both line and branch coverage must be 100%.
+5. **Use `tmp/` for temporary files** — Never use `/tmp` or other system directories.
+6. **Testing dependencies are RUNTIME** — Unlike most gems, `rspec`, `timecop-rspec`, etc. are runtime deps because this gem's purpose is to provide test infrastructure.
+7. **100% coverage required** — Both line and branch coverage must be 100%.
