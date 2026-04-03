@@ -18,7 +18,7 @@ module Kettle
 
     # String#casecmp? was added in Ruby 2.4, so fallback to String#casecmp
     # @return [Boolean] whether debug mode is enabled (disables silencing)
-    DEBUG = ENV.fetch("KETTLE_TEST_DEBUG", ENV.fetch("DEBUG", "false")).casecmp("true").zero?
+    DEBUG = ENV.fetch("KETTLE_TEST_DEBUG", ENV.fetch("KETTLE_DEV_DEBUG", "false")).casecmp("true").zero?
     # @return [Boolean] whether running in a CI environment (CI=true)
     IS_CI = ENV.fetch("CI", "").casecmp("true").zero?
     # @return [Boolean] when true, enables full backtraces in RSpec
