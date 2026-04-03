@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "version_gem"
 require_relative "test/version"
 
 # Kettle namespace for the kettle-rb ecosystem of gems.
