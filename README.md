@@ -518,6 +518,35 @@ Enable full backtraces from RSpec to aid debugging.
 KETTLE_TEST_FULL_BACKTRACE=true bundle exec rspec
 ```
 
+## 🖥️ CLI Tools
+
+### `rspec_summary`
+
+`kettle-test` ships an executable, `rspec_summary`, that runs your full RSpec suite and prints a
+compact, colour-coded highlight block — timing, seed, pass/fail count, failing example list, and
+SimpleCov coverage percentages — while writing the complete log to `tmp/kettle-test/`.
+
+Install the binstub once per project:
+
+```sh
+bundle binstubs kettle-test
+```
+
+Then run specs through the summary script:
+
+```sh
+# Full suite (coverage enabled on CI automatically via K_SOUP_COV_DO)
+bundle exec rspec_summary
+
+# Target a single spec (disable hard coverage fail to avoid threshold errors)
+K_SOUP_COV_MIN_HARD=false bundle exec rspec_summary spec/my_spec.rb
+
+# Enable coverage locally
+K_SOUP_COV_DO=true bundle exec rspec_summary
+```
+
+The exit code mirrors RSpec's exit code, including coverage hard-failures from `kettle-soup-cover`.
+
 ## 🦷 FLOSS Funding
 
 While kettle-rb tools are free software and will always be, the project would benefit immensely from some funding.
