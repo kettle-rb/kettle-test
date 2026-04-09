@@ -18,7 +18,6 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from kettle-test.gemspec
 gemspec
 
-
 # Debugging
 eval_gemfile "gemfiles/modular/debug.gemfile"
 
