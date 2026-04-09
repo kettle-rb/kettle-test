@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# exe/rspec_summary — Run RSpec and emit a structured highlight summary.
+# exe/kettle-test — Run RSpec and emit a structured highlight summary.
 #
 # Provided by the kettle-test gem.
 #
 # Usage:
-#   bundle exec rspec_summary [RSPEC_ARGS...]
+#   bundle exec kettle-test [RSPEC_ARGS...]
 #
 # All arguments are forwarded to `bundle exec rspec` verbatim.
 # Output is captured, written to tmp/kettle-test/rspec-TIMESTAMP.log,
@@ -17,9 +17,9 @@
 #   K_SOUP_COV_MIN_HARD  - set to "true" to hard-fail on coverage (default: CI only)
 #
 # Examples:
-#   bundle exec rspec_summary
-#   bundle exec rspec_summary spec/my_spec.rb
-#   K_SOUP_COV_DO=true bundle exec rspec_summary
+#   bundle exec kettle-test
+#   bundle exec kettle-test spec/my_spec.rb
+#   K_SOUP_COV_DO=true bundle exec kettle-test
 #
 set -euo pipefail
 
