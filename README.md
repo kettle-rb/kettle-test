@@ -646,7 +646,7 @@ the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
 For example:
 
 ```ruby
-spec.add_dependency("kettle-test", "~> 1.0")
+spec.add_dependency("kettle-test", "~> 2.0")
 ```
 
 <details markdown="1">
