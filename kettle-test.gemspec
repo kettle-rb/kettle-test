@@ -71,6 +71,8 @@ Gem::Specification.new do |spec|
     "lib/**/*.rake",
     # Signatures
     "sig/**/*.rbs",
+    # Bash scripts (shipped alongside Ruby wrapper executables in exe/)
+    "exe/*.sh",
   ]
 
   # Automatically included with gem package, no need to list again in files.
