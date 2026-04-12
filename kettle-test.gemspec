@@ -85,7 +85,6 @@ Gem::Specification.new do |spec|
     "FUNDING.md",
     "LICENSE.txt",
     "README.md",
-    "REEK",
     "RUBOCOP.md",
     "SECURITY.md",
   ]
