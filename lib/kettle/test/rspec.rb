@@ -4,6 +4,14 @@ require_relative "external"
 # Requires external helpers, this library, then wires internal configuration.
 require "kettle/test"
 
+module Kettle
+  module Test
+    # Namespace for the RSpec integration entrypoint.
+    module RSpec
+    end
+  end
+end
+
 require_relative "internal"
 
 # A gem's test harness should do require "rake" if it is their dependency,
