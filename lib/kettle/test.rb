@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "date"
 require "version_gem"
 require_relative "test/version"
 
