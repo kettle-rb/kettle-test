@@ -29,6 +29,10 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Changed
 
 - Bumped the gem to `2.0.0`.
+- `kettle-test` now runs specs through `turbo_tests2` by default, with
+  `KETTLE_TEST_RUNNER=rspec` available as an opt-out for direct RSpec runs.
+- Added `KETTLE_TEST_TURBO_PROCESSES`, `KETTLE_TEST_TURBO_RUNTIME_LOG`, and
+  `KETTLE_TEST_TURBO_NICE` controls for the default `turbo_tests2` runner.
 - Switched the coverage test stack to `turbo_tests2 ~> 3.0`.
 - Migrated local development dependency wiring to the current nomono-based
   modular Gemfile pattern used by the kettle-rb template.
