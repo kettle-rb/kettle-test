@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.0] - 2026-05-23
+
+- TAG: [v2.0.0][2.0.0t]
+- COVERAGE: 100.00% -- 91/91 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 15 files
+- 90.00% documented
+
+### Added
+
 - Added the `kettle-test` executable, which runs RSpec through Bundler, captures
   full output under `tmp/kettle-test/`, and prints a compact failure, seed,
   timing, and coverage summary.
@@ -39,14 +58,6 @@ Please file a bug if you notice a violation of semantic versioning.
   current kettle-jem full template.
 - Changed the project license metadata and generated license files to
   `AGPL-3.0-only`.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [1.0.10] - 2026-02-06
 
@@ -218,7 +229,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v1.0.10...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/kettle-rb/kettle-test/compare/v1.0.10...v2.0.0
+[2.0.0t]: https://github.com/kettle-rb/kettle-test/releases/tag/v2.0.0
 [1.0.10]: https://github.com/kettle-rb/kettle-test/compare/v1.0.9...v1.0.10
 [1.0.10t]: https://github.com/kettle-rb/kettle-test/releases/tag/v1.0.10
 [1.0.9]: https://github.com/kettle-rb/kettle-test/compare/v1.0.8...v1.0.9

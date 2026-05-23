@@ -116,9 +116,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency("backports", "~> 3.0")
   spec.add_dependency("rspec", "~> 3.0")                                # ruby > 0
   spec.add_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")  # ruby >= 1.8.7, for block_is_expected.to syntax
+  spec.add_dependency("rspec_junit_formatter", "~> 0.6")                # ruby >= 2.3.0, for GitLab Test Result Parsing
   spec.add_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.19")       # ruby >= 1.8.7, used to skip specs on incompatible Rubies
   spec.add_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.4")        # ruby >= 2.3.0, helper for stubbing ENV in specs
-  spec.add_dependency("rspec_junit_formatter", "~> 0.6")                # ruby >= 2.3.0, for GitLab Test Result Parsing
   spec.add_dependency("silent_stream", "~> 1.0", ">= 1.0.12")           # ruby >= 2.3.0, for output capture
   spec.add_dependency("timecop-rspec", "~> 1.0", ">= 1.0.3")            # ruby >= 1.9.2, time-based testing helpers
   spec.add_dependency("turbo_tests2", "~> 3.0")                         # ruby >= 2.4.0, shared RSpec helpers for spawned subprocess specs
