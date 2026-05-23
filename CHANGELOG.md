@@ -28,7 +28,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Bumped the gem to `2.0.0`.
 - `kettle-test` now runs specs through `turbo_tests2` by default, with
   `KETTLE_TEST_RUNNER=rspec` available as an opt-out for direct RSpec runs.
 - Added `KETTLE_TEST_TURBO_PROCESSES`, `KETTLE_TEST_TURBO_RUNTIME_LOG`, and
