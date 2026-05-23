@@ -83,7 +83,7 @@ GEM
       reline (>= 0.4.2)
     json (2.19.5)
     kettle-dev (2.0.0)
-    kettle-soup-cover (1.1.1)
+    kettle-soup-cover (1.1.2)
       simplecov (~> 0.22)
       simplecov-cobertura (~> 3.0)
       simplecov-console (~> 0.9, >= 0.9.3)
@@ -327,7 +327,7 @@ DEPENDENCIES
   gitmoji-regex (~> 1.0, >= 1.0.3)
   irb (~> 1.17)
   kettle-dev (~> 2.0)
-  kettle-soup-cover (~> 1.0, >= 1.0.10)
+  kettle-soup-cover (~> 1.0, >= 1.1.2)
   kettle-test!
   kramdown (~> 2.5, >= 2.5.1)
   kramdown-parser-gfm (~> 1.1)

@@ -22,8 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Dropped support for Ruby 2.3 because `turbo_tests2` is now a runtime
-  dependency and requires Ruby 2.4 or newer.
+- Refreshed project templating and generated documentation after the 2.0.0
+  release.
+- Updated the coverage bundle to require `kettle-soup-cover` 1.1.2 or newer.
 
 ### Deprecated
 
@@ -61,6 +62,8 @@ Please file a bug if you notice a violation of semantic versioning.
   current kettle-jem full template.
 - Changed the project license metadata and generated license files to
   `AGPL-3.0-only`.
+- Dropped support for Ruby 2.3 because `turbo_tests2` is now a runtime
+  dependency and requires Ruby 2.4 or newer.
 
 ## [1.0.10] - 2026-02-06
 
