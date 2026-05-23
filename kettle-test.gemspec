@@ -32,8 +32,8 @@ Gem::Specification.new do |spec|
   spec.summary = "🍲 A kettle-rb meta tool to streamline testing"
   spec.description = "🍲 Kettle::Test is a meta tool from kettle-rb to streamline testing. Acts as a shim dependency, pulling in many other dependencies, to give you OOTB productivity with a RubyGem, or Ruby app project. Configures RSpec w/ syntactic sugar to make writing tests, and testing more scenarios, easier.Configures each dependency library for proper use in the test suite, so they arrive ready to go. Fund overlooked open source projects - bottom of stack, dev/test dependencies: floss-funding.dev"
   spec.homepage = "https://github.com/kettle-rb/kettle-test"
-  spec.licenses = ["AGPL-3.0-only"]
-  spec.required_ruby_version = ">= 2.3.0"
+  spec.licenses = ["AGPL-3.0-only", "PolyForm-Small-Business-1.0.0"]
+  spec.required_ruby_version = ">= 2.4.0"
 
   # Linux distros often package gems and securely certify them independent
   #   of the official RubyGem certification process. Allowed via ENV["SKIP_GEM_SIGNING"]
@@ -116,9 +116,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency("backports", "~> 3.0")
   spec.add_dependency("rspec", "~> 3.0")                                # ruby > 0
   spec.add_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")  # ruby >= 1.8.7, for block_is_expected.to syntax
-  spec.add_dependency("rspec_junit_formatter", "~> 0.6")                # ruby >= 2.3.0, for GitLab Test Result Parsing
   spec.add_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.19")       # ruby >= 1.8.7, used to skip specs on incompatible Rubies
   spec.add_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.4")        # ruby >= 2.3.0, helper for stubbing ENV in specs
+  spec.add_dependency("rspec_junit_formatter", "~> 0.6")                # ruby >= 2.3.0, for GitLab Test Result Parsing
   spec.add_dependency("silent_stream", "~> 1.0", ">= 1.0.12")           # ruby >= 2.3.0, for output capture
   spec.add_dependency("timecop-rspec", "~> 1.0", ">= 1.0.3")            # ruby >= 1.9.2, time-based testing helpers
   spec.add_dependency("turbo_tests2", "~> 3.0")                         # ruby >= 2.4.0, shared RSpec helpers for spawned subprocess specs
@@ -128,11 +128,11 @@ Gem::Specification.new do |spec|
   #       visibility and discoverability.
   #       However, development dependencies in gemspec will install on
   #       all versions of Ruby that will run in CI.
-  #       This gem, and its gemspec runtime dependencies, will install on Ruby down to 2.3.0.
-  #       This gem, and its gemspec development dependencies, will install on Ruby down to 2.3.0.
+  #       This gem, and its gemspec runtime dependencies, will install on Ruby down to 2.4.0.
+  #       This gem, and its gemspec development dependencies, will install on Ruby down to 2.4.0.
   #       Thus, dev dependencies in gemspec must have
   #
-  #       required_ruby_version ">= 2.3.0" (or lower)
+  #       required_ruby_version ">= 2.4.0" (or lower)
   #
   #       Development dependencies that require strictly newer Ruby versions should be in a "gemfile",
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).

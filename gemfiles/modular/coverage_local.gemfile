@@ -5,10 +5,7 @@
 
 require "nomono/bundler" unless defined?(Nomono)
 
-local_gems = %w[
-  kettle-dev
-  kettle-soup-cover
-]
+local_gems = %w[kettle-dev kettle-soup-cover]
 
 # export KETTLE_RB_DEV=/path/to/kettle-rb
 platform :mri do

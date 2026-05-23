@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Dropped support for Ruby 2.3 because `turbo_tests2` is now a runtime
+  dependency and requires Ruby 2.4 or newer.
+
 ### Deprecated
 
 ### Removed
