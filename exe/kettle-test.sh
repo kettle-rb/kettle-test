@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
-# exe/kettle-test — Run RSpec and emit a structured highlight summary.
+# exe/kettle-test — Run specs and emit a structured highlight summary.
 #
 # Provided by the kettle-test gem.
 #
 # Usage:
-#   bundle exec kettle-test [RSPEC_ARGS...]
+#   bundle exec kettle-test [SPEC_ARGS...]
 #
-# All arguments are forwarded to `bundle exec rspec` verbatim.
+# By default this runs `bundle exec turbo_tests2`, so projects get parallel
+# RSpec execution with the same command used by CI and Rake tasks. Set
+# KETTLE_TEST_RUNNER=rspec to force direct `bundle exec rspec`.
+#
+# All arguments are forwarded to the selected runner.
 # Output is captured, written to tmp/kettle-test/rspec-TIMESTAMP.log,
 # and then key sections are printed to STDOUT in a compact summary block.
 #
@@ -15,6 +19,10 @@
 # Environment variables (from kettle-soup-cover):
 #   K_SOUP_COV_DO        - set to "true" to enable coverage (default: off locally)
 #   K_SOUP_COV_MIN_HARD  - set to "true" to hard-fail on coverage (default: CI only)
+#   KETTLE_TEST_RUNNER   - turbo_tests2 (default) or rspec
+#   KETTLE_TEST_TURBO_PROCESSES    - passed to turbo_tests2 -n
+#   KETTLE_TEST_TURBO_RUNTIME_LOG  - passed to turbo_tests2 --runtime-log
+#   KETTLE_TEST_TURBO_NICE         - set true to pass turbo_tests2 --nice
 #
 # Examples:
 #   bundle exec kettle-test
@@ -47,15 +55,42 @@ fi
 LOG_DIR="$PROJECT_ROOT/tmp/kettle-test"
 mkdir -p "$LOG_DIR"
 TIMESTAMP="$(date -u +%Y%m%d-%H%M%S)"
-LOG_FILE="$LOG_DIR/rspec-${TIMESTAMP}-$$.log"
+RUNNER="${KETTLE_TEST_RUNNER:-turbo_tests2}"
+LOG_FILE="$LOG_DIR/${RUNNER}-${TIMESTAMP}-$$.log"
 
-# ── Run RSpec ─────────────────────────────────────────────────────────────────
-# Run via `bundle exec rspec` so the project's own Gemfile is always used.
+# ── Run specs ─────────────────────────────────────────────────────────────────
+# Run via Bundler so the project's own Gemfile is always used.
 # We tee to the log so the full output is preserved even if the user interrupts.
 
 rspec_exit=0
 cd "$PROJECT_ROOT"
-bundle exec rspec "$@" 2>&1 | tee "$LOG_FILE" || rspec_exit=$?
+
+case "$RUNNER" in
+  turbo|turbo_tests2)
+    export PARALLEL_TEST_FIRST_IS_1="${PARALLEL_TEST_FIRST_IS_1:-true}"
+    command=(bundle exec turbo_tests2)
+    if [ -n "${KETTLE_TEST_TURBO_PROCESSES:-}" ]; then
+      command+=(-n "$KETTLE_TEST_TURBO_PROCESSES")
+    fi
+    if [ -n "${KETTLE_TEST_TURBO_RUNTIME_LOG:-}" ]; then
+      command+=(--runtime-log "$KETTLE_TEST_TURBO_RUNTIME_LOG")
+    fi
+    if [ "${KETTLE_TEST_TURBO_NICE:-false}" = "true" ]; then
+      command+=(--nice)
+    fi
+    command+=("$@")
+    ;;
+  rspec)
+    command=(bundle exec rspec "$@")
+    ;;
+  *)
+    printf 'Unknown KETTLE_TEST_RUNNER: %s\n' "$RUNNER" >&2
+    printf 'Supported values: turbo_tests2, turbo, rspec\n' >&2
+    exit 64
+    ;;
+esac
+
+"${command[@]}" 2>&1 | tee "$LOG_FILE" || rspec_exit=$?
 
 # ── Parse output ──────────────────────────────────────────────────────────────
 
@@ -65,17 +100,18 @@ LOG="$LOG_FILE"
 clean_log() { sed 's/\x1b\[[0-9;]*[mK]//g' "$LOG"; }
 
 # Summary line: "N examples, N failures" or "N examples, N failures, N pending"
-summary_line=$(clean_log | grep -E '^[0-9]+ example' | tail -1)
+summary_line=$(clean_log | grep -E '^[0-9]+ example' | tail -1 || true)
 
 # Finished timing line
-finished_line=$(clean_log | grep -E '^Finished in' | tail -1)
+finished_line=$(clean_log | grep -E '^Finished in' | tail -1 || true)
 
 # Seed line
-seed_line=$(clean_log | grep -E '^Randomized with seed' | tail -1)
+seed_line=$(clean_log | grep -E '^Randomized with seed' | tail -1 || true)
 
 # Failed examples block (rspec ./path:N # description)
 failed_block=$(clean_log | grep -E '^rspec \./.*#' || true)
-failed_count=$(echo "$failed_block" | grep -c 'rspec \.' || echo 0)
+failed_count=$(printf '%s\n' "$failed_block" | grep -c 'rspec \.' || true)
+failed_count=${failed_count:-0}
 
 # Coverage lines (simplecov-console output)
 cov_line=$(clean_log | grep -E '^Line Coverage:' | tail -1 || true)
