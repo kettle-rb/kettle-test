@@ -20,7 +20,22 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Added the `kettle-test` executable, which runs RSpec through Bundler, captures
+  full output under `tmp/kettle-test/`, and prints a compact failure, seed,
+  timing, and coverage summary.
+- Added default `kettle/test/rspec` integration coverage for exported RSpec
+  helpers and configuration constants.
+
 ### Changed
+
+- Bumped the gem to `2.0.0`.
+- Switched the coverage test stack to `turbo_tests2 ~> 3.0`.
+- Migrated local development dependency wiring to the current nomono-based
+  modular Gemfile pattern used by the kettle-rb template.
+- Refreshed project templating, CI workflows, and release support files from the
+  current kettle-jem full template.
+- Changed the project license metadata and generated license files to
+  `AGPL-3.0-only`.
 
 ### Deprecated
 
