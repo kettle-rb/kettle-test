@@ -30,7 +30,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-## [2.0.1] - 2026-05-24
+## [2.0.1] - 2026-05-25
 
 - TAG: [v2.0.1][2.0.1t]
 - COVERAGE: 100.00% -- 91/91 lines in 15 files
@@ -39,8 +39,11 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Refreshed generated project templates and CI workflows.
 - Refreshed project templating and generated documentation after the 2.0.0
   release.
+- Pruned generated binstubs to the current curated kettle-jem set.
+- Updated local modular Gemfile sibling wiring for coverage, documentation, and templating.
 - Updated the coverage bundle to require `kettle-soup-cover` 1.1.3 or newer.
 
 ### Fixed
