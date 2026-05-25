@@ -31,6 +31,43 @@
 #
 set -euo pipefail
 
+# ── Help ─────────────────────────────────────────────────────────────────────
+
+for arg in "$@"; do
+  case "$arg" in
+    -h|--help)
+      cat <<'HELP'
+Usage:
+  bundle exec kettle-test [SPEC_ARGS...]
+
+Runs RSpec through the configured runner and prints a compact summary.
+
+By default this uses:
+  bundle exec turbo_tests2
+
+Set KETTLE_TEST_RUNNER=rspec to force direct RSpec execution.
+
+Options:
+  -h, --help    Show this help and exit without running specs.
+
+Environment:
+  KETTLE_TEST_RUNNER             turbo_tests2, turbo, or rspec
+  KETTLE_TEST_TURBO_PROCESSES    Passed to turbo_tests2 -n
+  KETTLE_TEST_TURBO_RUNTIME_LOG  Passed to turbo_tests2 --runtime-log
+  KETTLE_TEST_TURBO_NICE         Set true to pass turbo_tests2 --nice
+  K_SOUP_COV_DO                  Set true to enable coverage
+  K_SOUP_COV_MIN_HARD            Set true to hard-fail on coverage thresholds
+
+Examples:
+  bundle exec kettle-test
+  bundle exec kettle-test spec/my_spec.rb
+  K_SOUP_COV_DO=true bundle exec kettle-test
+HELP
+      exit 0
+      ;;
+  esac
+done
+
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 RED='\033[0;31m'

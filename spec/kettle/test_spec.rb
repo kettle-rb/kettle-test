@@ -3,6 +3,7 @@
 require "json"
 require "open3"
 require "rbconfig"
+require "tmpdir"
 
 RSpec.describe Kettle::Test do
   include_context "with stubbed env"
@@ -99,6 +100,22 @@ RSpec.describe Kettle::Test do
         "global_date" => "2032-06-01 12:34:56",
         "time_machine_sequential" => false,
       )
+    end
+  end
+
+  describe "executable help" do
+    it "prints usage without running specs or creating a log directory" do
+      Dir.mktmpdir do |dir|
+        script = File.expand_path("../../exe/kettle-test.sh", __dir__.to_s)
+
+        stdout, stderr, status = Open3.capture3(script, "--help", chdir: dir)
+
+        expect(status).to be_success
+        expect(stderr).to eq("")
+        expect(stdout).to include("Usage:")
+        expect(stdout).to include("bundle exec kettle-test [SPEC_ARGS...]")
+        expect(File.exist?(File.join(dir, "tmp", "kettle-test"))).to be(false)
+      end
     end
   end
 end

@@ -32,6 +32,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- `kettle-test --help` now prints usage and exits without creating
+  `tmp/kettle-test` logs or invoking the configured test runner.
+
 ### Security
 
 ## [2.0.0] - 2026-05-23
