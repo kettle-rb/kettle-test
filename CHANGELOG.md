@@ -22,13 +22,26 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Refreshed project templating and generated documentation after the 2.0.0
-  release.
-- Updated the coverage bundle to require `kettle-soup-cover` 1.1.2 or newer.
-
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.1] - 2026-05-24
+
+- TAG: [v2.0.1][2.0.1t]
+- COVERAGE: 100.00% -- 91/91 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 15 files
+- 90.00% documented
+
+### Changed
+
+- Refreshed project templating and generated documentation after the 2.0.0
+  release.
+- Updated the coverage bundle to require `kettle-soup-cover` 1.1.3 or newer.
 
 ### Fixed
 
@@ -38,8 +51,6 @@ Please file a bug if you notice a violation of semantic versioning.
   optional turbo coverage rake tasks.
 - `kettle-test --help` now prints usage and exits without creating
   `tmp/kettle-test` logs or invoking the configured test runner.
-
-### Security
 
 ## [2.0.0] - 2026-05-23
 
@@ -242,7 +253,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/kettle-rb/kettle-test/compare/v2.0.0...v2.0.1
+[2.0.1t]: https://github.com/kettle-rb/kettle-test/releases/tag/v2.0.1
 [2.0.0]: https://github.com/kettle-rb/kettle-test/compare/v1.0.10...v2.0.0
 [2.0.0t]: https://github.com/kettle-rb/kettle-test/releases/tag/v2.0.0
 [1.0.10]: https://github.com/kettle-rb/kettle-test/compare/v1.0.9...v1.0.10
