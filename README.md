@@ -548,7 +548,7 @@ For most applications, prefer the [Pessimistic Version Constraint][📌pvc] with
 For example:
 
 ```ruby
-spec.add_dependency("kettle-test", "~> 3.0")
+spec.add_dependency("kettle-test", "~> 2.0")
 ```
 
 <details markdown="1">
@@ -773,7 +773,7 @@ Thanks for RTFM. ☺️
 [🤝cb-pulls]: https://codeberg.org/kettle-rb/kettle-test/pulls
 [🤝cb-donate]: https://donate.codeberg.org/
 [🤝contributing]: https://github.com/kettle-rb/kettle-test/blob/main/CONTRIBUTING.md
-[🏀codecov-g]: https://codecov.io/gh/kettle-rb/kettle-test/graphs/tree.svg
+[🏀codecov-g]: https://codecov.io/gh/kettle-rb/kettle-test/graph/badge.svg
 [🖐contrib-rocks]: https://contrib.rocks
 [🖐contributors]: https://github.com/kettle-rb/kettle-test/graphs/contributors
 [🖐contributors-img]: https://contrib.rocks/image?repo=kettle-rb/kettle-test
