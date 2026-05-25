@@ -95,6 +95,16 @@ TIMESTAMP="$(date -u +%Y%m%d-%H%M%S)"
 RUNNER="${KETTLE_TEST_RUNNER:-turbo_tests2}"
 LOG_FILE="$LOG_DIR/${RUNNER}-${TIMESTAMP}-$$.log"
 
+run_kettle_soup_cover_hook() {
+  local hook="$1"
+
+  if [ "${K_SOUP_COV_DO:-false}" != "true" ]; then
+    return 0
+  fi
+
+  bundle exec ruby -e "begin; require 'kettle/soup/cover'; Kettle::Soup::Cover.${hook} if Kettle::Soup::Cover.turbo_tests_coverage?; rescue LoadError; end"
+}
+
 # ── Run specs ─────────────────────────────────────────────────────────────────
 # Run via Bundler so the project's own Gemfile is always used.
 # We tee to the log so the full output is preserved even if the user interrupts.
@@ -105,6 +115,7 @@ cd "$PROJECT_ROOT"
 case "$RUNNER" in
   turbo|turbo_tests2)
     export PARALLEL_TEST_FIRST_IS_1="${PARALLEL_TEST_FIRST_IS_1:-true}"
+    run_kettle_soup_cover_hook "clear_turbo_tests_coverage_dir!"
     command=(bundle exec turbo_tests2)
     if [ -n "${KETTLE_TEST_TURBO_PROCESSES:-}" ]; then
       command+=(-n "$KETTLE_TEST_TURBO_PROCESSES")
@@ -128,6 +139,12 @@ case "$RUNNER" in
 esac
 
 "${command[@]}" 2>&1 | tee "$LOG_FILE" || rspec_exit=$?
+
+case "$RUNNER" in
+  turbo|turbo_tests2)
+    run_kettle_soup_cover_hook "collate_turbo_tests_coverage!" 2>&1 | tee -a "$LOG_FILE" || rspec_exit=$?
+    ;;
+esac
 
 # ── Parse output ──────────────────────────────────────────────────────────────
 

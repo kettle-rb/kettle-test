@@ -32,6 +32,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- `kettle-test` now invokes `kettle-soup-cover`'s turbo coverage setup and
+  cleanup APIs directly around the default `turbo_tests2` runner, so collated
+  coverage artifacts are published even when the host Rakefile does not load the
+  optional turbo coverage rake tasks.
 - `kettle-test --help` now prints usage and exits without creating
   `tmp/kettle-test` logs or invoking the configured test runner.
 
