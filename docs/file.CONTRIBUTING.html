@@ -115,6 +115,20 @@ after running <code>bin/setup</code>. These include:</p>
 <pre class="code language-shell"><code class="language-shell">bin/rake -T
 </code></pre>
 
+<h2 id="code-quality-checks">Code quality checks</h2>
+
+<p>Run the Reek task when you want a smell check that fails on current findings:</p>
+
+<pre class="code language-shell"><code class="language-shell">bin/rake reek
+</code></pre>
+
+<p>Refresh the checked-in <code>REEK</code> backlog through the rake task, not by redirecting<br>
+the raw <code>reek</code> executable output. The rake task uses the project bundle and<br>
+avoids stale generated binstubs shadowing the Reek gem executable:</p>
+
+<pre class="code language-shell"><code class="language-shell">bin/rake reek:update
+</code></pre>
+
 <h2 id="environment-variables-for-local-development">Environment Variables for Local Development</h2>
 
 <p>Below are the primary environment variables recognized by stone_checksums (and its integrated tools). Unless otherwise noted, set boolean values to the string “true” to enable.</p>
@@ -319,7 +333,7 @@ push git commits and tags, and push the <code>.gem</code> file to the gem host c
 </div></div>
 
       <div id="footer">
-  Generated on Sat May 23 17:09:41 2026 by
+  Generated on Mon May 25 00:20:06 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.43 (ruby-4.0.5).
 </div>

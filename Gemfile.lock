@@ -310,7 +310,7 @@ GEM
     yard-yaml (0.1.1)
       version_gem (~> 1.1, >= 1.1.9)
       yaml-converter (~> 0.1)
-    zeitwerk (2.8.1)
+    zeitwerk (2.8.2)
     zlib (3.2.3)
 
 PLATFORMS
