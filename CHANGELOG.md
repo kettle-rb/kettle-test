@@ -22,22 +22,33 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Retemplated project files with the current kettle-jem template, including the
-  StructuredMerge config migration, generated workflow updates, README logo
-  refresh, and updated development dependency floors.
-- Updated the runtime `turbo_tests2` dependency to require v3.1.0 or newer.
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
+### Security
+
+## [2.0.2] - 2026-06-01
+
+- TAG: [v2.0.2][2.0.2t]
+- COVERAGE: 100.00% -- 91/91 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 15 files
+- 90.00% documented
+
+### Changed
+
+- Retemplated project files with the current kettle-jem template, including the
+  StructuredMerge config migration, generated workflow updates, README logo
+  refresh, and updated development dependency floors.
+- Updated the runtime `turbo_tests2` dependency to require v3.1.0 or newer.
+
+### Fixed
+
 - `kettle-test` now resolves Appraisal gemfiles under `gemfiles/` back to the
   project root before running specs, so coverage and log artifacts stay under
   root-level `coverage/` and `tmp/` instead of being written inside `gemfiles/`.
-
-### Security
 
 ## [2.0.1] - 2026-05-25
 
@@ -265,7 +276,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v2.0.1...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/kettle-rb/kettle-test/compare/v2.0.1...v2.0.2
+[2.0.2t]: https://github.com/kettle-rb/kettle-test/releases/tag/v2.0.2
 [2.0.1]: https://github.com/kettle-rb/kettle-test/compare/v2.0.0...v2.0.1
 [2.0.1t]: https://github.com/kettle-rb/kettle-test/releases/tag/v2.0.1
 [2.0.0]: https://github.com/kettle-rb/kettle-test/compare/v1.0.10...v2.0.0

@@ -34,7 +34,7 @@ RSpec.describe Kettle::Test do
       RbConfig.ruby,
       "-e",
       code,
-      chdir: File.expand_path("../..", __dir__.to_s),
+      chdir: File.expand_path("../..", __dir__.to_s)
     )
 
     raise "isolated kettle/test load failed:\n#{stderr}" unless status.success?
@@ -66,7 +66,7 @@ RSpec.describe Kettle::Test do
     it "prefers KETTLE_TEST_DEBUG over KETTLE_DEV_DEBUG" do
       snapshot = isolated_kettle_test_snapshot(
         "KETTLE_TEST_DEBUG" => "true",
-        "KETTLE_DEV_DEBUG" => "false",
+        "KETTLE_DEV_DEBUG" => "false"
       )
 
       expect(snapshot["debug"]).to be(true)
@@ -75,12 +75,12 @@ RSpec.describe Kettle::Test do
     it "defaults SILENT to the CI flag when KETTLE_TEST_SILENT is unset" do
       snapshot = isolated_kettle_test_snapshot(
         "CI" => "true",
-        "KETTLE_TEST_SILENT" => nil,
+        "KETTLE_TEST_SILENT" => nil
       )
 
       expect(snapshot).to include(
         "is_ci" => true,
-        "silent" => true,
+        "silent" => true
       )
     end
 
@@ -90,7 +90,7 @@ RSpec.describe Kettle::Test do
         "KETTLE_TEST_RSPEC_PROFILE_EXAMPLES" => "7",
         "KETTLE_TEST_VERBOSE" => "true",
         "GLOBAL_TIME_TRAVEL_TIME" => "2032-06-01 12:34:56",
-        "KETTLE_TEST_TM_SEQUENTIAL" => "false",
+        "KETTLE_TEST_TM_SEQUENTIAL" => "false"
       )
 
       expect(snapshot).to include(
@@ -99,7 +99,7 @@ RSpec.describe Kettle::Test do
         "profile_examples" => true,
         "verbose" => true,
         "global_date" => "2032-06-01 12:34:56",
-        "time_machine_sequential" => false,
+        "time_machine_sequential" => false
       )
     end
   end
@@ -142,7 +142,7 @@ RSpec.describe Kettle::Test do
           "BUNDLE_GEMFILE" => appraisal_gemfile,
           "KETTLE_TEST_RUNNER" => "rspec",
           "K_SOUP_COV_DO" => "false",
-          "PATH" => "#{bin_dir}:#{ENV.fetch("PATH")}",
+          "PATH" => "#{bin_dir}:#{ENV.fetch("PATH")}"
         }
 
         stdout, stderr, status = Open3.capture3(env, script, chdir: gemfiles_dir)

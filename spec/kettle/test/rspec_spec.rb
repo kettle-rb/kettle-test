@@ -28,7 +28,7 @@ RSpec.describe Kettle::Test::RSpec do
         RbConfig.ruby,
         "-e",
         code,
-        chdir: File.expand_path("../../..", __dir__.to_s),
+        chdir: File.expand_path("../../..", __dir__.to_s)
       )
 
       raise "isolated kettle/test/rspec load failed:\n#{stderr}" unless status.success?
@@ -54,7 +54,7 @@ RSpec.describe Kettle::Test::RSpec do
       expect(snapshot).to include(
         "top_level_describe" => false,
         "example_status_persistence_file_path" => ".rspec_status",
-        "skip_ci_filter" => true,
+        "skip_ci_filter" => true
       )
     end
   end

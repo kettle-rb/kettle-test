@@ -1,0 +1,8 @@
+{
+  "bin/prepare-commit-msg:60574733": [
+    [16, 13, 76, "Lint/MixedRegexpCaptureTypes: Do not mix named captures and numbered captures in a Regexp literal.", 1400492948]
+  ],
+  "lib/kettle/test/config/version_gem.rb:446940845": [
+    [4, 1, 27, "Lint/DuplicateRequire: Duplicate `require` detected.", 2970467194]
+  ]
+}

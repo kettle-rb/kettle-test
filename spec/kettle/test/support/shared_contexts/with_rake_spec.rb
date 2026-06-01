@@ -24,16 +24,14 @@ RSpec.describe "rake demo:print" do # rubocop:disable RSpec/DescribeClass
     around do |example|
       require "fileutils"
       # Create a rake file BEFORE the shared context's before(:each) runs
-      File.open(File.join(tmp_rakelib, "demo.rake"), "w") do |f|
-        f.write(<<~'RAKE')
-          namespace :demo do
-            desc "Print a greeting"
-            task :print, [:name] do |_t, args|
-              puts "Hello #{args[:name] || 'world'}"
-            end
+      File.write(File.join(tmp_rakelib, "demo.rake"), <<~'RAKE')
+        namespace :demo do
+          desc "Print a greeting"
+          task :print, [:name] do |_t, args|
+            puts "Hello #{args[:name] || 'world'}"
           end
-        RAKE
-      end
+        end
+      RAKE
 
       begin
         example.run

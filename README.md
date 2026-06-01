@@ -401,7 +401,7 @@ RSpec.describe("version-specific behavior") do
   it "pends for MRI >= 2.6.0 and <= 3.0.0" do
     pending_for(
       engine: :ruby,
-      versions: (Gem::Version.new("2.6.0")..Gem::Version.new("3.0.0")),
+      versions: (Gem::Version.new("2.6.0")..Gem::Version.new("3.0.0"))
     )
   end
 
@@ -409,7 +409,7 @@ RSpec.describe("version-specific behavior") do
   it "skips for MRI >= 3.1.0 and < 3.3.0" do
     skip_for(
       engine: :ruby,
-      versions: (Gem::Version.new("3.1.0")...Gem::Version.new("3.3.0")),
+      versions: (Gem::Version.new("3.1.0")...Gem::Version.new("3.3.0"))
     )
   end
 
@@ -432,7 +432,7 @@ RSpec.configure do |config|
   config.before(:each, :requires_ruby_32) do
     skip_for(
       reason: "Requires Ruby >= 3.2",
-      versions: %w[2.7 3.0 3.1],
+      versions: %w[2.7 3.0 3.1]
     )
   end
 end
