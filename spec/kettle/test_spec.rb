@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
+require "fileutils"
 require "open3"
 require "rbconfig"
 require "tmpdir"
@@ -115,6 +116,42 @@ RSpec.describe Kettle::Test do
         expect(stdout).to include("Usage:")
         expect(stdout).to include("bundle exec kettle-test [SPEC_ARGS...]")
         expect(File.exist?(File.join(dir, "tmp", "kettle-test"))).to be(false)
+      end
+    end
+
+    it "runs from the project root when BUNDLE_GEMFILE points at an Appraisal gemfile" do
+      Dir.mktmpdir do |dir|
+        script = File.expand_path("../../exe/kettle-test.sh", __dir__.to_s)
+        bin_dir = File.join(dir, "bin")
+        gemfiles_dir = File.join(dir, "gemfiles")
+        fake_bundle = File.join(bin_dir, "bundle")
+        appraisal_gemfile = File.join(gemfiles_dir, "coverage.gemfile")
+
+        FileUtils.mkdir_p([bin_dir, gemfiles_dir])
+        File.write(File.join(dir, "turbo_tests2.gemspec"), "Gem::Specification.new do |spec|\n  spec.name = 'turbo_tests2'\nend\n")
+        File.write(appraisal_gemfile, "source 'https://gem.coop'\n")
+        File.write(fake_bundle, <<~BASH)
+          #!/usr/bin/env bash
+          printf 'FAKE_BUNDLE_PWD=%s\\n' "$PWD"
+          printf 'Finished in 0.01 seconds\\n'
+          printf '1 example, 0 failures\\n'
+        BASH
+        FileUtils.chmod("+x", fake_bundle)
+
+        env = {
+          "BUNDLE_GEMFILE" => appraisal_gemfile,
+          "KETTLE_TEST_RUNNER" => "rspec",
+          "K_SOUP_COV_DO" => "false",
+          "PATH" => "#{bin_dir}:#{ENV.fetch("PATH")}",
+        }
+
+        stdout, stderr, status = Open3.capture3(env, script, chdir: gemfiles_dir)
+
+        expect(status).to be_success
+        expect(stderr).to eq("")
+        expect(stdout).to include("FAKE_BUNDLE_PWD=#{dir}")
+        expect(File.exist?(File.join(dir, "tmp", "kettle-test"))).to be(true)
+        expect(File.exist?(File.join(gemfiles_dir, "tmp", "kettle-test"))).to be(false)
       end
     end
   end

@@ -30,6 +30,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- `kettle-test` now resolves Appraisal gemfiles under `gemfiles/` back to the
+  project root before running specs, so coverage and log artifacts stay under
+  root-level `coverage/` and `tmp/` instead of being written inside `gemfiles/`.
+
 ### Security
 
 ## [2.0.1] - 2026-05-25

@@ -80,13 +80,33 @@ RESET='\033[0m'
 hr() { printf '%s\n' "────────────────────────────────────────────────────────────────"; }
 
 # ── Project root ──────────────────────────────────────────────────────────────
-# When run via `bundle exec`, BUNDLE_GEMFILE points to the project's Gemfile.
-# Fall back to the current working directory.
+# When run via `bundle exec`, BUNDLE_GEMFILE can point at an Appraisal gemfile
+# under gemfiles/. Walk upward to the real project root so relative paths such
+# as coverage/ and tmp/ are never anchored under gemfiles/.
+
+find_project_root() {
+  local dir="$1"
+
+  dir="$(cd "$dir" && pwd)"
+  while [ "$dir" != "/" ]; do
+    if compgen -G "$dir/*.gemspec" >/dev/null ||
+      [ -f "$dir/Appraisal.root.gemfile" ] ||
+      [ -f "$dir/Gemfile" ] ||
+      [ -d "$dir/.git" ]; then
+      printf '%s\n' "$dir"
+      return 0
+    fi
+
+    dir="$(dirname "$dir")"
+  done
+
+  pwd
+}
 
 if [ -n "${BUNDLE_GEMFILE:-}" ]; then
-  PROJECT_ROOT="$(cd "$(dirname "$BUNDLE_GEMFILE")" && pwd)"
+  PROJECT_ROOT="$(find_project_root "$(dirname "$BUNDLE_GEMFILE")")"
 else
-  PROJECT_ROOT="$(pwd)"
+  PROJECT_ROOT="$(find_project_root "$(pwd)")"
 fi
 
 LOG_DIR="$PROJECT_ROOT/tmp/kettle-test"
