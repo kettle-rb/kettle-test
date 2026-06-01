@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Retemplated project files with the current kettle-jem template, including the
+  StructuredMerge config migration, generated workflow updates, README logo
+  refresh, and updated development dependency floors.
 - Updated the runtime `turbo_tests2` dependency to require v3.1.0 or newer.
 
 ### Deprecated
