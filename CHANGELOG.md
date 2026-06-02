@@ -22,6 +22,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Retemplated project files with the current kettle-jem template, including
+  refreshed coverage and style dependency floors.
 - Updated the runtime `turbo_tests2` dependency to require v3.1.1 or newer.
 
 ### Deprecated
