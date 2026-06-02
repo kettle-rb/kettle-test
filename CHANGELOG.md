@@ -22,21 +22,32 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Retemplated project files with the current kettle-jem template, including
-  refreshed coverage and style dependency floors.
-- Updated the runtime `turbo_tests2` dependency to require v3.1.1 or newer.
-- Updated to latest versions of other dependencies
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
+### Security
+
+## [2.0.3] - 2026-06-02
+
+- TAG: [v2.0.3][2.0.3t]
+- COVERAGE: 100.00% -- 91/91 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 15 files
+- 90.00% documented
+
+### Changed
+
+- Retemplated project files with the current kettle-jem template, including
+  refreshed coverage and style dependency floors.
+- Updated the runtime `turbo_tests2` dependency to require v3.1.1 or newer.
+- Updated to latest versions of other dependencies
+
+### Fixed
+
 - Made the ENV-driven configuration spec explicitly remove nil-valued child
   process overrides so JRuby 9.2 does not inherit `KETTLE_TEST_SILENT=false`.
-
-### Security
 
 ## [2.0.2] - 2026-06-01
 
@@ -284,7 +295,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v2.0.2...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v2.0.3...HEAD
+[2.0.3]: https://github.com/kettle-rb/kettle-test/compare/v2.0.2...v2.0.3
+[2.0.3t]: https://github.com/kettle-rb/kettle-test/releases/tag/v2.0.3
 [2.0.2]: https://github.com/kettle-rb/kettle-test/compare/v2.0.1...v2.0.2
 [2.0.2t]: https://github.com/kettle-rb/kettle-test/releases/tag/v2.0.2
 [2.0.1]: https://github.com/kettle-rb/kettle-test/compare/v2.0.0...v2.0.1
