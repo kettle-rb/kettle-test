@@ -33,6 +33,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Made the ENV-driven configuration spec explicitly remove nil-valued child
+  process overrides so JRuby 9.2 does not inherit `KETTLE_TEST_SILENT=false`.
+
 ### Security
 
 ## [2.0.2] - 2026-06-01

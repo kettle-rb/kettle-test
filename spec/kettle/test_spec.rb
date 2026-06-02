@@ -10,6 +10,15 @@ RSpec.describe Kettle::Test do
   include_context "with stubbed env"
 
   def isolated_kettle_test_snapshot(env = {})
+    child_env = ENV.to_hash
+    env.each do |key, value|
+      if value.nil?
+        child_env.delete(key)
+      else
+        child_env[key] = value
+      end
+    end
+
     code = <<~RUBY
       require "bundler/setup"
       require "json"
@@ -30,7 +39,7 @@ RSpec.describe Kettle::Test do
     RUBY
 
     stdout, stderr, status = Open3.capture3(
-      env,
+      child_env,
       RbConfig.ruby,
       "-e",
       code,
