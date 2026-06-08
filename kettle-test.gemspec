@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # kettle-jem:freeze
-# To retain chunks of comments & code during kettle-test templating:
+# To retain chunks of comments & code during kettle-jem templating:
 # Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).
-# kettle-test will then preserve content between those markers across template runs.
+# kettle-jem will then preserve content between those markers across template runs.
 # kettle-jem:unfreeze
 
 gem_version =
@@ -13,12 +13,7 @@ gem_version =
     # See: https://github.com/panorama-ed/memo_wise/pull/397
     Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/kettle/test/version.rb", mod) }::Kettle::Test::Version::VERSION
   else
-    # NOTE: Use __FILE__ or __dir__ until removal of Ruby 1.x support
-    # __dir__ introduced in Ruby 1.9.1
-    # lib = File.expand_path("../lib", __FILE__)
-    lib = File.expand_path("lib", __dir__)
-    $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-    require "kettle/test/version"
+    require_relative "lib/kettle/test/version"
     Kettle::Test::Version::VERSION
   end
 
@@ -108,6 +103,13 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   # Listed files are the relative paths from bindir above.
   spec.executables = ["kettle-test"]
+
+  # kettle-jem:freeze
+  # To retain chunks of comments & code during kettle-test templating:
+  # Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).
+  # kettle-test will then preserve content between those markers across template runs.
+  # kettle-jem:unfreeze
+
   spec.require_paths = ["lib"]
 
   # Utilities
@@ -121,7 +123,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency("silent_stream", "~> 1.0", ">= 1.0.12")           # ruby >= 2.3.0, for output capture
   spec.add_dependency("timecop-rspec", "~> 1.0", ">= 1.0.3")            # ruby >= 1.9.2, time-based testing helpers
   spec.add_dependency("turbo_tests2", "~> 3.1", ">= 3.1.1")             # ruby >= 2.4.0, shared RSpec helpers for spawned subprocess specs
-  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")              # ruby >= 2.2.0
+  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.11")              # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability.
@@ -137,7 +139,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 2.0", ">= 2.0.7")      # ruby >= 2.4
+  spec.add_development_dependency("kettle-dev", "~> 2.1", ">= 2.1.1")      # ruby >= 2.4
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
