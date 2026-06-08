@@ -163,5 +163,35 @@ RSpec.describe Kettle::Test do
         expect(File.exist?(File.join(gemfiles_dir, "tmp", "kettle-test"))).to be(false)
       end
     end
+
+    it "prints the RSpec seed in the run highlights when present" do
+      Dir.mktmpdir do |dir|
+        script = File.expand_path("../../exe/kettle-test.sh", __dir__.to_s)
+        bin_dir = File.join(dir, "bin")
+        fake_bundle = File.join(bin_dir, "bundle")
+
+        FileUtils.mkdir_p(bin_dir)
+        File.write(File.join(dir, "kettle-test-summary.gemspec"), "Gem::Specification.new do |spec|\n  spec.name = 'kettle-test-summary'\nend\n")
+        File.write(fake_bundle, <<~BASH)
+          #!/usr/bin/env bash
+          printf 'Finished in 0.01 seconds (files took 0.02 seconds to load)\\n'
+          printf '1 example, 0 failures\\n'
+          printf 'Randomized with seed 12345\\n'
+        BASH
+        FileUtils.chmod("+x", fake_bundle)
+
+        env = {
+          "KETTLE_TEST_RUNNER" => "rspec",
+          "K_SOUP_COV_DO" => "false",
+          "PATH" => "#{bin_dir}:#{ENV.fetch("PATH")}"
+        }
+
+        stdout, stderr, status = Open3.capture3(env, script, chdir: dir)
+
+        expect(status).to be_success
+        expect(stderr).to eq("")
+        expect(stdout).to include("🎲  Randomized with seed 12345")
+      end
+    end
   end
 end

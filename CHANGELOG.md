@@ -28,6 +28,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- `kettle-test` run highlights now include the RSpec randomization seed when
+  the underlying spec output reports one.
+
 ### Security
 
 ## [2.0.3] - 2026-06-02
