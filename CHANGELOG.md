@@ -28,8 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- `kettle-test` run highlights now include the RSpec randomization seed when
-  the underlying spec output reports one.
+- `kettle-test` now configures RSpec random ordering so run highlights include
+  the randomization seed needed to reproduce order-dependent failures.
 
 ### Security
 

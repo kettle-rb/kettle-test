@@ -21,6 +21,10 @@ RSpec.configure do |config|
     # Disable RSpec exposing methods globally on `Module` and `main`
     config.disable_monkey_patching!
 
+    # Run examples in random order and print the seed so failures are reproducible.
+    config.order = :random
+    Kernel.srand config.seed
+
     # Optionally turn on full backtrace
     config.full_backtrace = Kettle::Test::FULL_BACKTRACE
 

@@ -169,15 +169,24 @@ RSpec.describe Kettle::Test do
         script = File.expand_path("../../exe/kettle-test.sh", __dir__.to_s)
         bin_dir = File.join(dir, "bin")
         fake_bundle = File.join(bin_dir, "bundle")
+        lib_dir = File.expand_path("../../lib", __dir__.to_s)
 
         FileUtils.mkdir_p(bin_dir)
         File.write(File.join(dir, "kettle-test-summary.gemspec"), "Gem::Specification.new do |spec|\n  spec.name = 'kettle-test-summary'\nend\n")
-        File.write(fake_bundle, <<~BASH)
-          #!/usr/bin/env bash
-          printf 'Finished in 0.01 seconds (files took 0.02 seconds to load)\\n'
-          printf '1 example, 0 failures\\n'
-          printf 'Randomized with seed 12345\\n'
-        BASH
+        File.write(fake_bundle, <<~RUBY)
+          #!#{RbConfig.ruby}
+          $LOAD_PATH.unshift(#{lib_dir.inspect})
+          require "rspec/core"
+          require "kettle/test/rspec"
+
+          RSpec.describe "seed output" do
+            it "passes" do
+              expect(true).to be(true)
+            end
+          end
+
+          exit RSpec::Core::Runner.run([])
+        RUBY
         FileUtils.chmod("+x", fake_bundle)
 
         env = {
@@ -190,7 +199,7 @@ RSpec.describe Kettle::Test do
 
         expect(status).to be_success
         expect(stderr).to eq("")
-        expect(stdout).to include("🎲  Randomized with seed 12345")
+        expect(stdout).to match(/🎲  Randomized with seed \d+/)
       end
     end
   end
