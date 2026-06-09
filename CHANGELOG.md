@@ -22,19 +22,30 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Retemplated project workflows with the current kettle-jem template and raised
-  the runtime `turbo_tests2` dependency floor to v3.1.2.
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
+### Security
+
+## [2.0.4] - 2026-06-08
+
+- TAG: [v2.0.4][2.0.4t]
+- COVERAGE: 100.00% -- 91/91 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 15 files
+- 90.00% documented
+
+### Changed
+
+- Retemplated project workflows with the current kettle-jem template and raised
+  the runtime `turbo_tests2` dependency floor to v3.1.2.
+
+### Fixed
+
 - `kettle-test` now configures RSpec random ordering so run highlights include
   the randomization seed needed to reproduce order-dependent failures.
-
-### Security
 
 ## [2.0.3] - 2026-06-02
 
@@ -301,7 +312,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v2.0.3...HEAD
+[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v2.0.4...HEAD
+[2.0.4]: https://github.com/kettle-rb/kettle-test/compare/v2.0.3...v2.0.4
+[2.0.4t]: https://github.com/kettle-rb/kettle-test/releases/tag/v2.0.4
 [2.0.3]: https://github.com/kettle-rb/kettle-test/compare/v2.0.2...v2.0.3
 [2.0.3t]: https://github.com/kettle-rb/kettle-test/releases/tag/v2.0.3
 [2.0.2]: https://github.com/kettle-rb/kettle-test/compare/v2.0.1...v2.0.2
