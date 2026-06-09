@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "🍲 A kettle-rb meta tool to streamline testing"
   spec.description = "🍲 Kettle::Test is a meta tool from kettle-rb to streamline testing. Acts as a shim dependency, pulling in many other dependencies, to give you OOTB productivity with a RubyGem, or Ruby app project. Configures RSpec w/ syntactic sugar to make writing tests, and testing more scenarios, easier.Configures each dependency library for proper use in the test suite, so they arrive ready to go. Fund overlooked open source projects - bottom of stack, dev/test dependencies: floss-funding.dev"
-  spec.homepage = "https://github.com/kettle-rb/kettle-test"
+  spec.homepage = "https://github.com/kettle-dev/kettle-test"
   spec.licenses = ["AGPL-3.0-only", "PolyForm-Small-Business-1.0.0"]
   spec.required_ruby_version = ">= 2.4.0"
 
