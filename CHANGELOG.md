@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Retemplated project workflows with the current kettle-jem template and raised
+  the runtime `turbo_tests2` dependency floor to v3.1.2.
+
 ### Deprecated
 
 ### Removed
