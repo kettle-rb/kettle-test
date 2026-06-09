@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Retemplated project metadata and development tooling for `kettle-dev` 2.2.1
+  and `yard-fence` 0.9.3.
+
 ### Deprecated
 
 ### Removed
@@ -29,6 +32,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 - Restored `docs/CNAME` so the generated documentation site keeps its custom domain.
+
 ### Security
 
 ## [2.0.4] - 2026-06-08
