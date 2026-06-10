@@ -22,8 +22,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Retemplated project metadata and development tooling for `kettle-dev` 2.2.1
-  and `yard-fence` 0.9.3.
+- Retemplated development tooling for `kettle-dev` 2.2.3 and
+  `kettle-soup-cover` 2.0.2.
 
 ### Deprecated
 
