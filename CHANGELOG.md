@@ -22,21 +22,35 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Retemplated development tooling for `kettle-dev` 2.2.3 and
-  `kettle-soup-cover` 2.0.2.
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- Updated generated project metadata links to use the migrated `kettle-dev`
-  GitHub organization.
+### Security
+
+## [2.0.5] - 2026-06-10
+
+- TAG: [v2.0.5][2.0.5t]
+- COVERAGE: 100.00% -- 91/91 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 2/2 branches in 15 files
+- 90.00% documented
+
+### Changed
+
+- Retemplated project metadata and development tooling for `kettle-dev` 2.2.1
+  and `yard-fence` 0.9.3.
+
+- Retemplated development tooling for `kettle-dev` 2.2.3 and
+  `kettle-soup-cover` 2.0.2.
+
+### Fixed
 
 - Restored `docs/CNAME` so the generated documentation site keeps its custom domain.
 
-### Security
+- Updated generated project metadata links to use the migrated `kettle-dev`
+  GitHub organization.
 
 ## [2.0.4] - 2026-06-08
 
@@ -320,7 +334,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - silent_stream
   - timecop-rspec
 
-[Unreleased]: https://github.com/kettle-rb/kettle-test/compare/v2.0.4...HEAD
+[Unreleased]: https://github.com/kettle-dev/kettle-test/compare/v2.0.5...HEAD
+[2.0.5]: https://github.com/kettle-dev/kettle-test/compare/v2.0.4...v2.0.5
+[2.0.5t]: https://github.com/kettle-dev/kettle-test/releases/tag/v2.0.5
 [2.0.4]: https://github.com/kettle-rb/kettle-test/compare/v2.0.3...v2.0.4
 [2.0.4t]: https://github.com/kettle-rb/kettle-test/releases/tag/v2.0.4
 [2.0.3]: https://github.com/kettle-rb/kettle-test/compare/v2.0.2...v2.0.3
